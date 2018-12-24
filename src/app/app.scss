@@ -15,11 +15,19 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-
-.app-title{
-    font-family: 'Pacifico', cursive;
-    
-    .toolbar-title{
-        color: map-get($map: $colors, $key: primary )
+#side-menu{
+    #menu-list{
+        h2{
+            font-weight: bold;
+            text-transform: capitalize;
+        }
     }
+}
+
+#close-button{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    text-align: left;
 }

@@ -1,55 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Config, Nav, Platform } from 'ionic-angular';
+import { Config, Nav, Platform, Events, MenuController } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
-import { Settings } from '../providers';
+import { Settings, User, Api } from '../providers';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage = 'WelcomePage';
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
+  @ViewChild('mainMenu') mainMenu: ElementRef;
 
-  pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' }
-  ]
+  pages: any[] = []
+  _user;
+  apiroot:string;
 
   constructor(private translate: TranslateService, 
     platform: Platform, 
     private settings: Settings, 
+    private user: User, 
     private config: Config, 
     private statusBar: StatusBar, 
+    private api:Api,
+    private events:Events,
+    public menuCtrl: MenuController,
     private splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -57,16 +37,34 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      /* this.settings.load().then(()=>{
-        this.settings.getValue('firsttime').then((firstrun)=>{
+      this.settings.load().then(()=>{
+        /* this.settings.getValue('firsttime').then((firstrun)=>{
           if (firstrun) {
             this.rootPage = 'WelcomePage';
           } else {
             this.rootPage = FirstRunPage;
           }
+        }); */
+        this.settings.getValue('user').then((_user)=>{
+          if (_user) {
+            this.rootPage = 'LookPage';
+            this.user._user = _user;
+            this._user = _user;
+          } else 
+            this.rootPage = 'WelcomePage';
         });
-      }); */
+      });
     });
+    this.events.subscribe('login', ()=>{
+      this._user = this.user._user;
+    });
+    this.events.subscribe('logout', ()=>{
+      this._user = undefined;
+      this.menuCtrl.close('menu');
+      this.nav.setRoot('WelcomePage');
+    });
+    this.apiroot = api.url;
+
     this.initTranslate();
   }
 
@@ -100,5 +98,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    this.user.logout();
   }
 }

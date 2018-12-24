@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
 import { TranslateService } from '@ngx-translate/core';
+import { Settings } from '../settings/settings';
+import { Events } from 'ionic-angular';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -28,7 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class User {
   _user: any;
 
-  constructor(public api: Api) { }
+  constructor(public api: Api, private settings:Settings, private events:Events) { }
 
   /**
    * Send a POST request to our login endpoint with the data
@@ -74,6 +76,8 @@ export class User {
    */
   logout() {
     this._user = null;
+    this.settings.setValue('user', null);
+    this.events.publish('logout');
   }
 
   /**
@@ -81,5 +85,8 @@ export class User {
    */
   _loggedIn(resp) {
     this._user = resp.user;
+    this._user.profile = resp.profile;
+    this.settings.setValue('user', this._user);
+    this.events.publish('login');
   }
 }

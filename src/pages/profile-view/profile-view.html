@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ProfileViewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="item">
+    <img [src]="apiroot + '/user/picture?image=' + item.profile_image" />
+    <h2 class="name">{{item.firstname}} {{item.lastname}}</h2>
+    <p class="phone">
+      <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
+        <ion-icon ios="ios-call"></ion-icon>
+        {{item.phone}}
+      </button>
+    </p>
+
+    <table>
+      <tr>
+        <td>Date og Birth</td><td>{{item.dob}}</td>
+      </tr>
+      <tr>
+        <td>Country</td><td>{{item.country}}</td>
+      </tr>
+      <tr>
+        <td>District</td><td>{{item.district}}</td>
+      </tr>
+      <tr>
+        <td>City</td><td>{{item.city}}</td>
+      </tr>
+      <tr>
+        <td>Gender</td><td>{{item.gender}}</td>
+      </tr>
+      <tr>
+        <td>Looking for</td><td>{{item.looking_for}}</td>
+      </tr>
+    </table>
+  </div>
+</ion-content>

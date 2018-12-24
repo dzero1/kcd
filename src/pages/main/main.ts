@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Items } from '../../providers/items/items';
+import { Observable } from 'rxjs';
+import { Api, User } from '../../providers';
 
 /**
  * Generated class for the MainPage page.
@@ -16,16 +18,36 @@ import { Items } from '../../providers/items/items';
 })
 export class MainPage {
 
-  look:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items:Items) {
+  currentItems:any = [];
+  look:any = {};
+  apiroot:string;
+  _user:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public items:Items, private api:Api, private user:User) {
     if (navParams.get('look')) this.look = navParams.get('look');
+    this.apiroot = api.url;
+    this._user = user._user;
   }
 
   ionViewDidLoad() {
-    if (this.look)
-      this.items.query(this.look);
-    else 
-      this.items.query();
+    let query:Observable<any>;
+    query = this.items.query(this.look);
+
+    query.subscribe(r => {
+      if (r && !r.error && r.people && r.people.length > 0) this.currentItems = r.people;
+    })
   }
 
+  openItem(item:any){
+    if (this._user){
+      this.navCtrl.push('ProfileViewPage', {"item": item});
+    } else {
+      this.navCtrl.push('LoginPage');
+    }
+  }
+
+  back(){
+    this.navCtrl.pop();
+  }
 }

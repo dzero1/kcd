@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { User } from '../../providers';
 
 /**
  * Generated class for the LookPage page.
@@ -14,11 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'look.html',
 })
 export class LookPage {
+  _user;
 
   look:{district:string, homearea:string, gender:string} = {district:'', homearea:'', gender:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, user: User) {
+    this._user = user._user;
   }
 
   ionViewDidLoad() {
@@ -26,7 +28,7 @@ export class LookPage {
   }
 
   enternow(){
-    this.navCtrl.push('MainPage', this.look)
+    this.navCtrl.push('MainPage', {'look':this.look});
   }
 
 }

@@ -10,9 +10,9 @@
   "LOGIN": "Login",
   "SIGNUP": "Sign up now",
 
-  "ENTER_DISTRICT": "Sign up now",
-  "ENTER_HOMEAREA": "Sign up now",
-  "ENTER_LOOKING": "Sign up now",
+  "ENTER_DISTRICT": "Enter the name of District",
+  "ENTER_HOMEAREA": "Enter home area name",
+  "ENTER_LOOKING": "I am looking for",
   "FEMALE": "Female",
   "MALE": "Male",
   "ENTER_NOW": "Enter now",

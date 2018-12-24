@@ -2,6 +2,12 @@
 
 namespace app\modules\v1\controllers;
 
+use yii\web\UploadedFile;
+use yii\imagine\Image;
+use yii\helpers\Url;
+
+use Imagine\Image\Box;
+
 use app\controllers\RestController;
 use app\models\KcdUsers;
 use app\models\KcdUserDetails;
@@ -36,6 +42,8 @@ class UserController extends RestController
             unset($user->password);
             $ret->token = $user->access_token;
             $ret->user = $user;
+
+            $ret->profile = KcdUserDetails::findOne(['user_id'=>$user->id]);
         }
 
         return $ret;
@@ -117,7 +125,6 @@ class UserController extends RestController
             $details->gender = $gender;
             $details->looking_for = $looking_for;
 
-
             if ($details->save(false)){
                 $ret->details = $details;
             }
@@ -127,6 +134,77 @@ class UserController extends RestController
         }
 
         return $ret;
+    }
+
+    public function actionUpdatePicture(){
+        $ret = new \stdClass;
+        $ret->error = false;
+
+        $filepath = "/profile/";
+
+        $root = \Yii::$app->basePath;
+        $save_path = $root.$filepath;
+        if (!file_exists($save_path)) mkdir($save_path, "0777", true);
+
+        $request = \Yii::$app->request;
+        $request->getBodyParams();
+
+        $token = $request->getBodyParam('token');
+
+        $user = KcdUsers::findOne(['access_token'=>$token]);
+        if ($user){
+            $ud = KcdUserDetails::findOne(['user_id'=>$user->id]);
+            if (isset($ud->profile_image) && !empty($ud->profile_image) && file_exists($root.$ud->profile_image)) 
+                unlink($root.$ud->profile_image);
+
+            $fname = md5($user->id.time());
+            $base_path = $filepath.$fname;
+            $save_path .= $fname;
+
+            $uploads = UploadedFile::getInstancesByName("file");
+            if (empty($uploads)){
+                return "Must upload at least 1 file in upfile form-data POST";
+            }
+            foreach ($uploads as $file){
+                $temp_file = tempnam(sys_get_temp_dir(), 'kcd').".$file->extension";
+                $file->saveAs($temp_file);
+                
+                $file->saveAs($temp_file);
+                Image::thumbnail($temp_file, 500, 500)
+                    ->resize(new Box(500,500))
+                    ->save($save_path, ['quality' => 70]);
+        
+                if (file_exists($temp_file)) unlink($temp_file);
+
+                $ret->profile_image = Url::to('@web'.$base_path);
+
+                $ud->profile_image = $base_path;
+                $ud->save();
+            }
+        } else {
+            $ret->error = true;
+            $ret->message = 'User not found.';
+        }
+        
+        return $ret;
+    }
+
+    public function actionPicture(){
+        $ret = new \stdClass;
+        $ret->error = false;
+
+        $request = \Yii::$app->request;
+        $image = $request->get('image');
+
+        $save_path = \Yii::$app->basePath.$image;
+        if (file_exists($save_path)){
+            header('Content-Type: '. mime_content_type($save_path));
+            readfile($save_path);
+        } else {
+            $ret->error = true;
+            $ret->message = 'File not found.';
+            return $ret;
+        }
     }
 
     public function actionPeople(){
