@@ -6,6 +6,7 @@ import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
+import { Storage } from '@ionic/storage';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -27,7 +28,7 @@ import { Settings } from '../providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -37,7 +38,6 @@ export class MyApp {
     { title: 'Tabs', component: 'TabsPage' },
     { title: 'Cards', component: 'CardsPage' },
     { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
     { title: 'Signup', component: 'SignupPage' },
     { title: 'Master Detail', component: 'ListMasterPage' },
     { title: 'Menu', component: 'MenuPage' },
@@ -45,12 +45,27 @@ export class MyApp {
     { title: 'Search', component: 'SearchPage' }
   ]
 
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, 
+    platform: Platform, 
+    private settings: Settings, 
+    private config: Config, 
+    private statusBar: StatusBar, 
+    private splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.settings.load().then(()=>{
+        this.settings.getValue('firsttime').then((firstrun)=>{
+          if (firstrun) {
+            this.rootPage = 'WelcomePage';
+          } else {
+            this.rootPage = FirstRunPage;
+          }
+        });
+      });
     });
     this.initTranslate();
   }

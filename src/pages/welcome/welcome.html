@@ -7,7 +7,19 @@
     </div>
   </div>
   <div padding>
-    <button ion-button block (click)="signup()">{{ 'SIGNUP' | translate }}</button>
+
+    Login
+    <ion-item>
+      <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
+      <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+    </ion-item>
     <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
+
+    Don't have an account ?
+    <button ion-button block (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
   </div>
 </ion-content>

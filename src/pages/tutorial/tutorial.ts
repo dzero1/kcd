@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
+import { Settings } from '../../providers';
 
 export interface Slide {
   title: string;
@@ -19,7 +21,11 @@ export class TutorialPage {
   showSkip = true;
   dir: string = 'ltr';
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
+  constructor(public navCtrl: NavController, 
+    public menu: MenuController, 
+    public translate: TranslateService,
+    public settings:Settings, 
+    public platform: Platform) {
     this.dir = platform.dir();
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
@@ -69,6 +75,7 @@ export class TutorialPage {
   ionViewWillLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+    this.settings.setValue('firsttime', true);
   }
 
 }

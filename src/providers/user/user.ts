@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -14,7 +15,7 @@ import { Api } from '../api/api';
  *
  * ```json
  * {
- *   status: 'success',
+ *   error: false,
  *   user: {
  *     // User fields your app needs, like "id", "name", "email", etc.
  *   }
@@ -34,11 +35,11 @@ export class User {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+    let seq = this.api.post('user/signin', accountInfo).share();
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
+      if (!res.error) {
         this._loggedIn(res);
       } else {
       }
@@ -58,7 +59,7 @@ export class User {
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
+      if (!res.error) {
         this._loggedIn(res);
       }
     }, err => {
