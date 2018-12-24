@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers';
-import { MainPage } from '../';
 
 @IonicPage()
 @Component({
@@ -39,7 +38,7 @@ export class SignupPage {
     // Attempt to login in through our User service
     if (this.account.password == this.account.password2){
       this.user.signup(this.account).subscribe((resp) => {
-        this.navCtrl.push(MainPage);
+        this.navCtrl.push('MainPage');
       }, (err) => {
         //this.navCtrl.push(MainPage);
         // Unable to sign up

@@ -4,6 +4,15 @@ $font-path: "../assets/fonts";
 
 @import "ionic.globals";
 
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+*{
+  font-family: 'Quicksand', sans-serif;
+}
+button{
+  font-weight: bold;
+}
 
 // Shared Variables
 // --------------------------------------------------

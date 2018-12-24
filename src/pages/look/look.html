@@ -1,0 +1,36 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title class="app-title">Side-dish</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+    <h2>Search from your area</h2>
+    <div style="margin-top: 50px">
+      <ion-item>
+        <ion-label floating>{{ 'ENTER_DISTRICT' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="look.district" name="district"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{ 'ENTER_HOMEAREA' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="look.homearea" name="homearea"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ 'ENTER_LOOKING' | translate }}</ion-label>
+        <ion-select [(ngModel)]="look.gender">
+          <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
+          <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button block (click)="enternow()" class="login">{{ 'ENTER_NOW' | translate }}</button>
+    </div>
+  </ion-content>
+  

@@ -1,4 +1,22 @@
 {
+  "APP_TITLE": "Side-Dish",
+  "WELCOME_INTRO": "Wellcome to ",
+  "WELCOME_INTRO2": " app",
+  "WELCOME_SUB": "If you are a register user, Use Log in or Sign up as a new user.",
+  "MEMBER": "Member",
+  "NON_MEMBER": "New Member",
+  "CHECK_BEFORE_LOG": "Try-out before you log",
+  "CHECKIN": "Try",
+  "LOGIN": "Login",
+  "SIGNUP": "Sign up now",
+
+  "ENTER_DISTRICT": "Sign up now",
+  "ENTER_HOMEAREA": "Sign up now",
+  "ENTER_LOOKING": "Sign up now",
+  "FEMALE": "Female",
+  "MALE": "Male",
+  "ENTER_NOW": "Enter now",
+
   "BACK_BUTTON_TEXT": "Back",
 
   "FIRST_NAME": "Firstname",
@@ -7,8 +25,6 @@
   "USERNAME": "Username",
   "PASSWORD": "Password",
   "PASSWORD_AGAIN": "confirm Password",
-  "LOGIN": "Sign in",
-  "SIGNUP": "Sign up",
 
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Search",
@@ -30,7 +46,6 @@
 
   "TUTORIAL_SLIDE4_TITLE": "Ready to Start?",
 
-  "WELCOME_INTRO": "If you are a register user, Use Log in or Sign Up as a new user.",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",

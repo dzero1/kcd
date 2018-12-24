@@ -28,7 +28,7 @@ import { Storage } from '@ionic/storage';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage;
+  rootPage = 'WelcomePage';
 
   @ViewChild(Nav) nav: Nav;
 
@@ -57,7 +57,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.settings.load().then(()=>{
+      /* this.settings.load().then(()=>{
         this.settings.getValue('firsttime').then((firstrun)=>{
           if (firstrun) {
             this.rootPage = 'WelcomePage';
@@ -65,7 +65,7 @@ export class MyApp {
             this.rootPage = FirstRunPage;
           }
         });
-      });
+      }); */
     });
     this.initTranslate();
   }

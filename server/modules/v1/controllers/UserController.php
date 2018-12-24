@@ -36,15 +36,6 @@ class UserController extends RestController
             unset($user->password);
             $ret->token = $user->access_token;
             $ret->user = $user;
-
-            /* $utoken = new KcdUserToken();
-            $oldtoken = KcdUserToken::findOne(['user_id' => $user->id]);
-            if ($oldtoken){
-                $utoken->user_id = $user->id;
-            }
-            $utoken->token = $ret->token;
-            $utoken->created_at = date('Y-m-d H:i:s');
-            $utoken->save(); */
         }
 
         return $ret;
@@ -56,8 +47,6 @@ class UserController extends RestController
         $ret->error = false;
 
         $request = \Yii::$app->request;
-        $firstname = $request->post('firstname');
-        $lastname = $request->post('lastname');
         $username = $request->post('username');
         $password = $request->post('password');
 
@@ -71,8 +60,6 @@ class UserController extends RestController
             $user = new KcdUsers();
             $user->username     = $username;
             $user->password     = md5("kcd.dzero@$username".$password);
-            $user->firstname    = $firstname;
-            $user->lastname     = $lastname;
             $user->access_token = base64_encode(md5("$username:$password:".time()));
             $user->lastlogin    = date('Y-m-d H:i:s');
 
@@ -95,16 +82,17 @@ class UserController extends RestController
 
         $user = KcdUsers::findOne(['access_token'=>$token]);
         if ($user){
+            $firstname = $request->post('firstname');
+            $lastname = $request->post('lastname');
+            $phone = $request->post('phone');
             $dob = $request->post('dob');
-            $language = $request->post('language');
-            $phone1 = $request->post('phone1');
-            $phone2 = $request->post('phone2');
-            $email = $request->post('email');
-            $looking_for = $request->post('looking_for');
             $country = $request->post('country');
             $city = $request->post('city');
-            //$profile = $request->post('profile');
-            $location = $request->post('location');
+            $district = $request->post('district');
+            $gender = $request->post('gender');
+            $looking_for = $request->post('looking_for');
+            //$image = $request->post('profile');
+            //$location = $request->post('location');
 
             $details = new KcdUserDetails();
             $have_details = KcdUserDetails::findOne(['user_id'=>$user->id]);
@@ -117,15 +105,19 @@ class UserController extends RestController
             }
 
             $details->user_id = $user->id;
+            $details->firstname = $firstname;
+            $details->lastname = $lastname;
+            $details->phone = $phone;
             $details->dob = $dob;
-            $details->language = $language;
-            $details->phone1 = $phone1;
-            $details->phone2 = $phone2;
-            $details->email = $email;
-            $details->looking_for = $looking_for;
             $details->country = $country;
             $details->city = $city;
-            $details->location = $location;
+            $details->district = $district;
+            /* $details->profile_image = $image;
+            $details->map_location = $location */;
+            $details->gender = $gender;
+            $details->looking_for = $looking_for;
+
+
             if ($details->save(false)){
                 $ret->details = $details;
             }
@@ -136,5 +128,25 @@ class UserController extends RestController
 
         return $ret;
     }
+
+    public function actionPeople(){
+        $ret = new \stdClass;
+        $ret->error = false;
+
+        $request = \Yii::$app->request;
+        $district = $request->post('district');
+        $city = $request->post('homearea');
+        $gender = $request->post('gender');
+
+        $query_data = [];
+        if (isset($district) && !empty($district)) $query_data['district'] = $district;
+        if (isset($city) && !empty($city)) $query_data['city'] = $city;
+        if (isset($gender) && !empty($gender)) $query_data['gender'] = $gender;
+        
+        $ret->people = count($query_data) == 0 ? KcdUserDetails::find()->all() : KcdUserDetails::findAll($query_data);
+
+        return $ret;
+    }
+
 
 }

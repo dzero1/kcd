@@ -9,13 +9,8 @@ export class Items {
   constructor(public api: Api) { }
 
   query(params?: any) {
-    return this.api.get('/items', params);
+    return this.api.get('/user/people', params);
   }
 
-  add(item: Item) {
-  }
-
-  delete(item: Item) {
-  }
 
 }

@@ -1,25 +1,28 @@
 <ion-content scroll="false">
-  <div class="splash-bg"></div>
+  <div class="splash-bg">
+    <h1 class="app-title">{{ 'APP_TITLE' | translate }}</h1>
+  </div>
   <div class="splash-info">
     <div class="splash-logo"></div>
     <div class="splash-intro">
       {{ 'WELCOME_INTRO' | translate }}
+      <span class="app-title">{{ 'APP_TITLE' | translate }}</span>
+      {{ 'WELCOME_INTRO2' | translate }}
     </div>
   </div>
   <div padding>
 
-    Login
-    <ion-item>
-      <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-    </ion-item>
-    <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
-
-    Don't have an account ?
-    <button ion-button block (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
+    <div>
+      {{ 'CHECK_BEFORE_LOG' | translate }}
+      <button ion-button block color="secondary" (click)="try()" class="try">{{ 'CHECKIN' | translate }}</button>
+    </div>
+    <div style="margin-top: 30px">
+      {{ 'MEMBER' | translate }}
+      <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
+    </div>
+    <div style="margin-top: 20px">
+      {{ 'NON_MEMBER' | translate }}
+      <button ion-button block color="danger" (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
+    </div>
   </div>
 </ion-content>
