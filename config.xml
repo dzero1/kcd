@@ -83,4 +83,10 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <plugin name="cordova-plugin-googlemaps" spec="2.4.6">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBdAt3A42gQyqvvEGDiuSW8HBqaSXr525s" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyBdAt3A42gQyqvvEGDiuSW8HBqaSXr525s" />
+    </plugin>
+    <engine name="browser" spec="~5.0.4" />
+    <plugin name="cordova-plugin-nativegeocoder" spec="3.1.3" />
 </widget>

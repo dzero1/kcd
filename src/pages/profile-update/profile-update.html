@@ -1,0 +1,106 @@
+<!--
+  Generated template for the ProfileUpdatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <h3>{{ 'PROFILE_TITLE' | translate }}</h3>
+  <ion-list>
+
+    <ion-label>{{ 'PROFILE_IMAGE' | translate }}</ion-label>
+    <div class="profile-wraper">
+      <div class="profile-image" [style.backgroundImage]="'url('+profile_pic+')'" ></div>
+    </div>
+    <button ion-button block color="primary" id="attachment-btn" (click)="openFileDialog()">
+      {{ 'IMAGE_CHANGE' | translate }}
+    </button>
+
+    <ion-item>
+      <ion-label flex>{{ 'FIRST_NAME' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.firstname" name="firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'LAST_NAME' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.lastname" name="lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'PHONE' | translate }}</ion-label>
+      <ion-input type="phone" [(ngModel)]="account.phone" name="phone"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label flex>{{ 'DOB' | translate }}</ion-label>
+      <ion-input type="date" [(ngModel)]="account.dob" name="dob"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'GENDER' | translate }}</ion-label>
+      <ion-select [(ngModel)]="account.gender">
+        <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
+        <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'LOOKING_FOR' | translate }}</ion-label>
+      <ion-select [(ngModel)]="account.looking_for">
+        <ion-option value="MARRIAGE">{{ 'MARRIAGE' | translate }}</ion-option>
+        <ion-option value="SERIOUS_RELATIONSHIP">{{ 'SERIOUS_RELATIONSHIP' | translate }}</ion-option>
+        <ion-option value="RELATIONSHIP">{{ 'RELATIONSHIP' | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'COUNTRY' | translate }}</ion-label>
+      <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
+        <ion-option value="Uganda">Uganda</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'CITY' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.city" name="city" (ionChange)="loadMap()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label flex>{{ 'CURRENT_LOCATION' | translate }}</ion-label>
+    </ion-item>
+    <!-- <div #map_canvas id="map_canvas"></div> -->
+    <div padding class="map-area" id="map">
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe width="600" height="500" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          </div>
+        </div>
+    </div>
+
+    <div padding>
+      <button ion-button color="primary" (click)="updateProfile()" block>{{ 'SAVE_PROFILE' | translate }}</button>
+    </div>
+    
+  </ion-list>
+
+
+  <div class="hiddenfile">
+    <form #form>
+      <input name="upload" type="file" accept="image/*" #fileInput (change)="imageFilePath_change($event)"/>
+    </form>
+  </div>
+  
+</ion-content>

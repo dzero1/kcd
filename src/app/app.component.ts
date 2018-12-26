@@ -9,10 +9,36 @@ import { Settings, User, Api } from '../providers';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  templateUrl: 'app.html',
+  //templateUrl: 'app.html',
+  template: `
+    <ion-menu [content]="content" #mainMenu id="menu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>
+            <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content id="side-menu" *ngIf="_user">
+        <ion-list id="menu-list">
+          <ion-item color="none" id="menu-list-item1" (click)="openProfile()">
+            <ion-thumbnail item-left>
+              <div class [style.backgroundImage]="apiroot + '/user/picture?image=' + _user.profile_image"></div>
+            </ion-thumbnail>
+            <h2>{{_user.firstname}} {{_user.lastname}}</h2>
+          </ion-item>
+        </ion-list>
+        <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="user.logout()">
+          <ion-icon name="power"></ion-icon>Logout
+        </button>
+      </ion-content>
+    </ion-menu>
+
+    <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage;
+  rootPage = 'WelcomePage';
 
   @ViewChild(Nav) nav: Nav;
   @ViewChild('mainMenu') mainMenu: ElementRef;
@@ -31,32 +57,18 @@ export class MyApp {
     private events:Events,
     public menuCtrl: MenuController,
     private splashScreen: SplashScreen) {
+    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.settings.load();
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      this.settings.load().then(()=>{
-        /* this.settings.getValue('firsttime').then((firstrun)=>{
-          if (firstrun) {
-            this.rootPage = 'WelcomePage';
-          } else {
-            this.rootPage = FirstRunPage;
-          }
-        }); */
-        this.settings.getValue('user').then((_user)=>{
-          if (_user) {
-            this.rootPage = 'LookPage';
-            this.user._user = _user;
-            this._user = _user;
-          } else 
-            this.rootPage = 'WelcomePage';
-        });
-      });
     });
     this.events.subscribe('login', ()=>{
-      this._user = this.user._user;
+      this._user = this.user.USER;
+      this.rootPage = 'LookPage';
     });
     this.events.subscribe('logout', ()=>{
       this._user = undefined;
@@ -102,5 +114,10 @@ export class MyApp {
 
   logout(){
     this.user.logout();
+  }
+
+  openProfile(){
+    this.menuCtrl.close('menu');
+    this.nav.push('ProfileUpdatePage');
   }
 }

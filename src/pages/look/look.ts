@@ -20,7 +20,7 @@ export class LookPage {
   look:{district:string, homearea:string, gender:string} = {district:'', homearea:'', gender:''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, user: User) {
-    this._user = user._user;
+    this._user = user.USER;
   }
 
   ionViewDidLoad() {

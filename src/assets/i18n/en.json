@@ -12,12 +12,18 @@
 
   "ENTER_DISTRICT": "Enter the name of District",
   "ENTER_HOMEAREA": "Enter home area name",
-  "ENTER_LOOKING": "I am looking for",
+  "LOOKING_FOR": "I am looking for",
   "FEMALE": "Female",
   "MALE": "Male",
   "ENTER_NOW": "Enter now",
 
   "BACK_BUTTON_TEXT": "Back",
+
+  "PROFILE_UPDATE_ERROR": "Error updating profile details.",
+  "PROFILE_UPDATED": "Your profile updating successful.",
+
+  "PROFILE_IMAGE": "Profile picture",
+  "IMAGE_CHANGE": "Change",
 
   "FIRST_NAME": "Firstname",
   "LAST_NAME": "Lastname",
@@ -25,6 +31,18 @@
   "USERNAME": "Username",
   "PASSWORD": "Password",
   "PASSWORD_AGAIN": "confirm Password",
+  "PHONE": "Phone",
+  "DISTRICT": "District",
+  "CITY": "City",
+  "COUNTRY": "Country",
+  "GENDER": "Gender",
+  "MARRIAGE": "Marriage",
+  "SERIOUS_RELATIONSHIP": "Serious Relationship",
+  "RELATIONSHIP": "Relationship",
+  "PROFILE_TITLE": "Update your profile details",
+  "SAVE_PROFILE": "Save",
+
+  "CURRENT_LOCATION": "Current Location",
 
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Search",
@@ -65,6 +83,7 @@
   "SIGNUP_TITLE": "Sign up",
   "PASSWORD_ERROR": "Password does not match with confirm password.",
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
+  "SIGNUP_SUCCESS": "Your account create account. Now you can use your username and password for future login.",
   "SIGNUP_BUTTON": "Sign up",
 
   "LIST_MASTER_TITLE": "Items",

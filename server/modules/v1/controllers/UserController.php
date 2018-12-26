@@ -11,6 +11,7 @@ use Imagine\Image\Box;
 use app\controllers\RestController;
 use app\models\KcdUsers;
 use app\models\KcdUserDetails;
+use Imagine\Image\Point;
 
 class UserController extends RestController
 {
@@ -36,7 +37,7 @@ class UserController extends RestController
         } else {
             $user = $have_user;
             $user->lastlogin = date('Y-m-d H:i:s');
-            $user->access_token = base64_encode(md5("$username:$password:".time()));
+            $user->access_token = self::getToken($username,$password);
             $user->save(false);
 
             unset($user->password);
@@ -68,7 +69,7 @@ class UserController extends RestController
             $user = new KcdUsers();
             $user->username     = $username;
             $user->password     = md5("kcd.dzero@$username".$password);
-            $user->access_token = base64_encode(md5("$username:$password:".time()));
+            $ret->token = $user->access_token = self::getToken($username,$password);
             $user->lastlogin    = date('Y-m-d H:i:s');
 
             if ($user->save(false)){
@@ -100,7 +101,7 @@ class UserController extends RestController
             $gender = $request->post('gender');
             $looking_for = $request->post('looking_for');
             //$image = $request->post('profile');
-            //$location = $request->post('location');
+            $location = $request->post('location');
 
             $details = new KcdUserDetails();
             $have_details = KcdUserDetails::findOne(['user_id'=>$user->id]);
@@ -115,15 +116,14 @@ class UserController extends RestController
             $details->user_id = $user->id;
             $details->firstname = $firstname;
             $details->lastname = $lastname;
-            $details->phone = $phone;
-            $details->dob = $dob;
-            $details->country = $country;
-            $details->city = $city;
-            $details->district = $district;
-            /* $details->profile_image = $image;
-            $details->map_location = $location */;
-            $details->gender = $gender;
-            $details->looking_for = $looking_for;
+            if (!self::check($phone)) $details->phone = $phone;
+            if (!self::check($dob)) $details->dob = $dob;
+            if (!self::check($country)) $details->country = $country;
+            if (!self::check($city)) $details->city = $city;
+            if (!self::check($district)) $details->district = $district;
+            if (!self::check($location)) $details->map_location = $location;
+            if (!self::check($gender)) $details->gender = $gender;
+            if (!self::check($looking_for)) $details->looking_for = $looking_for;
 
             if ($details->save(false)){
                 $ret->details = $details;
@@ -136,7 +136,8 @@ class UserController extends RestController
         return $ret;
     }
 
-    public function actionUpdatePicture(){
+    public function actionUpdatePicture()
+    {
         $ret = new \stdClass;
         $ret->error = false;
 
@@ -157,7 +158,7 @@ class UserController extends RestController
             if (isset($ud->profile_image) && !empty($ud->profile_image) && file_exists($root.$ud->profile_image)) 
                 unlink($root.$ud->profile_image);
 
-            $fname = md5($user->id.time());
+            $fname = md5($user->id.time()).".png";
             $base_path = $filepath.$fname;
             $save_path .= $fname;
 
@@ -169,11 +170,18 @@ class UserController extends RestController
                 $temp_file = tempnam(sys_get_temp_dir(), 'kcd').".$file->extension";
                 $file->saveAs($temp_file);
                 
-                $file->saveAs($temp_file);
-                Image::thumbnail($temp_file, 500, 500)
-                    ->resize(new Box(500,500))
+                Image::thumbnail($temp_file, 500,500)
                     ->save($save_path, ['quality' => 70]);
-        
+
+                /* $img_size = 500;
+                $thumbnail = Image::thumbnail($temp_file, $img_size, $img_size);
+                $size = $thumbnail->getSize();
+                if ($size->getWidth() < $img_size or $size->getHeight() < $img_size) {
+                $white = Image::getImagine()->create(new Box($img_size, $img_size));
+                $thumbnail = $white->paste($thumbnail, new Point($img_size / 2 - $size->getWidth() / 2, $img_size / 2 - $size->getHeight() / 2));
+                }
+                $thumbnail->save($save_path); */
+
                 if (file_exists($temp_file)) unlink($temp_file);
 
                 $ret->profile_image = Url::to('@web'.$base_path);
@@ -189,7 +197,8 @@ class UserController extends RestController
         return $ret;
     }
 
-    public function actionPicture(){
+    public function actionPicture()
+    {
         $ret = new \stdClass;
         $ret->error = false;
 
@@ -207,7 +216,8 @@ class UserController extends RestController
         }
     }
 
-    public function actionPeople(){
+    public function actionPeople()
+    {
         $ret = new \stdClass;
         $ret->error = false;
 
@@ -226,5 +236,12 @@ class UserController extends RestController
         return $ret;
     }
 
+    private function getToken($username,$password){
+        return base64_encode(md5("$username:$password:".time()));
+    }
+
+    private function check($param){
+        return isset($param) && !empty($param);
+    }
 
 }

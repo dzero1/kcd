@@ -9,9 +9,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of currentItems">
       <button ion-item (click)="openItem(item)">
-        <ion-avatar item-start>
-          <img [src]="apiroot + '/user/picture?image=' + item.profile_image" />
-        </ion-avatar>
+        <div item-start class="profile-image" [style.backgroundImage]="apiroot + '/user/picture?image=' + item.profile_image" ></div>
         <h2>{{item.firstname}} {{item.lastname}}</h2>
         <p *ngIf="_user">{{item.district}} District</p>
       </button>

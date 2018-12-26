@@ -26,8 +26,8 @@ export class MainPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public items:Items, private api:Api, private user:User) {
     if (navParams.get('look')) this.look = navParams.get('look');
-    this.apiroot = api.url;
-    this._user = user._user;
+    this.apiroot = this.api.url;
+    this._user = this.user.USER;
   }
 
   ionViewDidLoad() {

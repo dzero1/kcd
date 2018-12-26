@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <div *ngIf="item">
-    <img [src]="apiroot + '/user/picture?image=' + item.profile_image" />
+    <div class="profile-image" [style.backgroundImage]="apiroot + '/user/picture?image=' + item.profile_image" ></div>
     <h2 class="name">{{item.firstname}} {{item.lastname}}</h2>
     <p class="phone">
       <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">

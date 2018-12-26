@@ -13,9 +13,7 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account:{firstname: string, lastname: string, username: string, password: string, password2:string } = {
-    firstname: '',
-    lastname: '',
+  account:{username: string, password: string, password2:string } = {
     username: '',
     password: '', 
     password2:'', 
@@ -38,9 +36,8 @@ export class SignupPage {
     // Attempt to login in through our User service
     if (this.account.password == this.account.password2){
       this.user.signup(this.account).subscribe((resp) => {
-        this.navCtrl.push('MainPage');
+        this.navCtrl.push('ProfileUpdatePage', {from:'signup'});
       }, (err) => {
-        //this.navCtrl.push(MainPage);
         // Unable to sign up
         let toast = this.toastCtrl.create({
           message: this.signupErrorString,
@@ -58,4 +55,5 @@ export class SignupPage {
       toast.present();
     }
   }
+
 }

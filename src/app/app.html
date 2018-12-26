@@ -1,21 +1,3 @@
-
-<ion-header>
-  <!-- <ion-navbar>
-    <ion-buttons left>
-      <button *ngIf="_user" ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons right>
-      <button ion-button (click)="viewCtrl.dismiss()">
-        <ion-icon name="arrow-back"></ion-icon> {{ 'BACK_BUTTON_TEXT' | translate }}
-      </button>
-    </ion-buttons>
-
-    <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
-  </ion-navbar> -->
-</ion-header>
-  
 <ion-menu [content]="content" #mainMenu id="menu">
   <ion-header>
     <ion-toolbar>
@@ -27,14 +9,12 @@
 
   <ion-content id="side-menu" *ngIf="_user">
     <ion-list id="menu-list">
-      <ion-item color="none" id="menu-list-item1">
-        <ion-thumbnail item-left>
-          <img [src]="apiroot + '/user/picture?image=' + _user.profile.profile_image" />
-        </ion-thumbnail>
-        <h2>{{_user.profile.firstname}} {{_user.profile.lastname}}</h2>
+      <ion-item color="none" id="menu-list-item1" (click)="openProfile()">
+        <div item-left class="profile-image" [style.backgroundImage]="apiroot + '/user/picture?image=' + _user.profile_image" ></div>
+        <h2>{{_user.firstname}} {{_user.lastname}}</h2>
       </ion-item>
     </ion-list>
-    <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="logout()">
+    <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="user.logout()">
       <ion-icon name="power"></ion-icon>Logout
     </button>
   </ion-content>
