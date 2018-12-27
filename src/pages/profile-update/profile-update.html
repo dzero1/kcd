@@ -64,14 +64,24 @@
     <ion-item>
       <ion-label flex>{{ 'COUNTRY' | translate }}</ion-label>
       <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
-        <ion-option value="Uganda">Uganda</ion-option>
+        <ion-option *ngFor="let c of allCountries" [value]="c.name">{{c.name}}</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <!-- If uganda select -->
+    <ion-item *ngIf="account.country == 'Uganda'">
+      <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
+      <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
+        <ion-option *ngFor="let udists of uganda_districts" [value]="udists">{{udists}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- If other country -->
+    <ion-item *ngIf="account.country !== 'Uganda'">
       <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
     </ion-item>
+
 
     <ion-item>
       <ion-label flex>{{ 'CITY' | translate }}</ion-label>

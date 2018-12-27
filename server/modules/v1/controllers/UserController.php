@@ -73,8 +73,19 @@ class UserController extends RestController
             $user->lastlogin    = date('Y-m-d H:i:s');
 
             if ($user->save(false)){
+                /* Save dummy details */
+                $details = new KcdUserDetails();
+
+                $details->user_id = $user->id;
+                $details->firstname = "Unknows";
+                $details->lastname = "User";
+                $details->save(false);
+
                 unset($user->password);
                 $ret->user = $user;
+
+                //$ret->profile = KcdUserDetails::findOne(['user_id'=>$user->id]);
+                $ret->profile = $details;
             }
         }
 
