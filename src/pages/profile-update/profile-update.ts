@@ -325,6 +325,7 @@ export class ProfileUpdatePage {
 
     this.apiroot = api.url;
 
+    //this.account.country = 'Uganda' // default will be home country
   }
 
   ionViewDidLoad() {

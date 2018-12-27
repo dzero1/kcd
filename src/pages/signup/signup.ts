@@ -35,8 +35,8 @@ export class SignupPage {
   doSignup() {
     // Attempt to login in through our User service
     if (this.account.password == this.account.password2){
-      this.user.signup(this.account).subscribe((resp) => {
-        this.navCtrl.push('ProfileUpdatePage', {from:'signup'});
+      this.user.signup(this.account).subscribe((resp:any) => {
+        if (!resp.error) this.navCtrl.push('ProfileUpdatePage', {from:'signup'});
       }, (err) => {
         // Unable to sign up
         let toast = this.toastCtrl.create({

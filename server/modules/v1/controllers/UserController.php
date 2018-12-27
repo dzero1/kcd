@@ -76,9 +76,14 @@ class UserController extends RestController
                 /* Save dummy details */
                 $details = new KcdUserDetails();
 
+                $ip = \Yii::$app->getRequest()->getUserIP();
+                $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+                $country = is_array($dataArray) ? $dataArray['geoplugin_countryName'] : $dataArray->geoplugin_countryName;
+
                 $details->user_id = $user->id;
                 $details->firstname = "Unknows";
                 $details->lastname = "User";
+                if ($country !== null) $details->country = $country;
                 $details->save(false);
 
                 unset($user->password);

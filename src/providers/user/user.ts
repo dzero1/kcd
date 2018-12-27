@@ -27,7 +27,7 @@ export class User {
     });
   }
 
-  login(accountInfo: any) {
+  login(accountInfo: any, redirect = true) {
     let seq = this.api.post('user/signin', accountInfo).share();
     this.settings.setValue('user', accountInfo);
 
@@ -35,7 +35,7 @@ export class User {
       // If the API returned a successful response, mark the user as logged in
       if (!res.error) {
         this.setupData(res);
-        this.events.publish('login');
+        if (redirect) this.events.publish('login');
       } else {
       }
     }, err => {
