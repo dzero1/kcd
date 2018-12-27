@@ -71,7 +71,7 @@
     <!-- If uganda select -->
     <ion-item *ngIf="account.country == 'Uganda'">
       <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
-      <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
+      <ion-select [(ngModel)]="account.district" (ionChange)="loadMap()">
         <ion-option *ngFor="let udists of uganda_districts" [value]="udists">{{udists}}</ion-option>
       </ion-select>
     </ion-item>
