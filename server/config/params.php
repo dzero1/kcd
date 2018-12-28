@@ -1,6 +1,6 @@
 <?php
 
-Yii::setAlias('@dirroot', realpath(dirname(__FILE__).'/../../'));
+Yii::setAlias('@dirroot', realpath(dirname(__FILE__).'/../'));
 
 return [
     'adminEmail' => 'admin@example.com',
