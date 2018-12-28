@@ -192,20 +192,10 @@ class UserController extends RestController
                 Image::thumbnail($temp_file, 500,500)
                     ->save($save_path, ['quality' => 70]);
 
-                /* $img_size = 500;
-                $thumbnail = Image::thumbnail($temp_file, $img_size, $img_size);
-                $size = $thumbnail->getSize();
-                if ($size->getWidth() < $img_size or $size->getHeight() < $img_size) {
-                $white = Image::getImagine()->create(new Box($img_size, $img_size));
-                $thumbnail = $white->paste($thumbnail, new Point($img_size / 2 - $size->getWidth() / 2, $img_size / 2 - $size->getHeight() / 2));
-                }
-                $thumbnail->save($save_path); */
-
                 if (file_exists($temp_file)) unlink($temp_file);
 
-                $ret->profile_image = Url::to('@web'.$base_path);
+                $ret->profile_image = $ud->profile_image = "/profile/$fname";
 
-                $ud->profile_image = $base_path;
                 $ud->save();
             }
         } else {
@@ -224,7 +214,7 @@ class UserController extends RestController
         $request = \Yii::$app->request;
         $image = $request->get('image');
 
-        $save_path = \Yii::$app->basePath.$image;
+        $save_path = \Yii::getAlias('@dirroot').$image;
         if (file_exists($save_path)){
             header('Content-Type: '. mime_content_type($save_path));
             readfile($save_path);
