@@ -58,6 +58,7 @@ class UserController extends RestController
         $request = \Yii::$app->request;
         $username = $request->post('username');
         $password = $request->post('password');
+        $phone = $request->post('phone');
 
         $have_username = KcdUsers::findOne(['username'=>$username]);
         if (empty($username) || $have_username){
@@ -83,6 +84,7 @@ class UserController extends RestController
                 $details->user_id = $user->id;
                 $details->firstname = "";
                 $details->lastname = "";
+                $details->phone = $phone;
                 $details->profile_image = "/profile/default.png";
                 if ($country !== null) $details->country = $country;
                 $details->save(false);

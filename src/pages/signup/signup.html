@@ -12,21 +12,64 @@
   <h3>{{ 'SIGNUP_TITLE' | translate }}</h3>
   
   <ion-list>
-    <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-    </ion-item>
+    <div [formGroup]="validations_username">
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" autocomplete="off" [(ngModel)]="account.username" formControlName="username"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.username" >
+          <div class="error-message" *ngIf="validations_username.get('username').hasError(validation.type) && (validations_username.get('username').dirty || validations_username.get('username').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    
+    <div [formGroup]="matching_passwords_group">
+      <ion-item>
+        <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.password" >
+          <div class="error-message" *ngIf="matching_passwords_group.get('password').hasError(validation.type) && (matching_passwords_group.get('password').dirty || matching_passwords_group.get('password').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
 
-    <ion-item>
-      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>{{ 'PASSWORD_AGAIN' | translate }}</ion-label>
+        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password2" formControlName="confirm_password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.confirm_password" >
+          <div class="error-message" *ngIf="matching_passwords_group.get('confirm_password').hasError(validation.type) && (matching_passwords_group.get('confirm_password').dirty || matching_passwords_group.get('confirm_password').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    
+    <div [formGroup]="validations_phone">
+      <ion-item>
+        <ion-label floating>{{ 'PHONE' | translate }}*</ion-label>
+        <ion-input type="phone" [(ngModel)]="account.phone" formControlName="phone"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.phone" >
+          <div class="error-message" *ngIf="validations_phone.get('phone').hasError(validation.type) && (validations_phone.get('phone').dirty || validations_phone.get('phone').touched)">
+          {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
 
-    <ion-item>
-      <ion-label floating>{{ 'PASSWORD_AGAIN' | translate }}</ion-label>
-      <ion-input type="password" [(ngModel)]="account.password2" name="password2"></ion-input>
-    </ion-item>
-
+    <p><i>{{ 'PROFILE_INFO_2' | translate }}</i></p>
+    <p><i>{{ 'PROFILE_INFO_3' | translate }}</i></p>
+    <p><i>{{ 'PROFILE_INFO_4' | translate }}</i></p>
+    
     <div padding>
       <button ion-button color="primary" (click)="doSignup()" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
     </div>

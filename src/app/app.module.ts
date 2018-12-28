@@ -10,9 +10,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 
-import { Settings, User, Api } from '../providers';
+import { Settings, Api } from '../providers';
 import { MyApp } from './app.component';
 import { WebRequestProvider } from '../providers/web-request';
+import { User } from '../providers/user/user';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.

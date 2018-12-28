@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../providers';
+import { User } from '../../providers/user/user';
 
 /**
  * Generated class for the LoginPage page.
@@ -30,9 +30,9 @@ export class LoginPage {
   }
 
   login(){
-    this.user.login(this.account).subscribe((resp) => {
+    this.user.login(this.account).then((resp) => {
       this.navCtrl.setRoot('LookPage');
-    }, (err) => {
+    }).catch((err) => {
       // Unable to log in
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,

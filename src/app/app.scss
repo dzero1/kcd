@@ -51,3 +51,7 @@ ion-thumbnail{
         height: 80px;
     }
 }
+
+.validation-errors{
+    color: map-get($map: $colors, $key: danger);
+}

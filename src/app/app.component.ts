@@ -5,8 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform, Events, MenuController } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
-import { Settings, User, Api } from '../providers';
+import { Settings, Api } from '../providers';
 import { Storage } from '@ionic/storage';
+import { User } from '../providers/user/user';
 
 @Component({
   //templateUrl: 'app.html',
@@ -29,7 +30,7 @@ import { Storage } from '@ionic/storage';
             <h2>{{_user.firstname}} {{_user.lastname}}</h2>
           </ion-item>
         </ion-list>
-        <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="user.logout()">
+        <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="logout()">
           <ion-icon name="power"></ion-icon>Logout
         </button>
       </ion-content>
@@ -71,9 +72,10 @@ export class MyApp {
       this.rootPage = 'LookPage';
     });
     this.events.subscribe('logout', ()=>{
-      this._user = undefined;
-      this.menuCtrl.close('menu');
       this.nav.setRoot('WelcomePage');
+      this.menuCtrl.close('menu').then(()=>{
+        this._user = undefined;
+      })
     });
     this.apiroot = api.url;
 

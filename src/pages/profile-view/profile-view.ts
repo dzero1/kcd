@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Api, User } from '../../providers';
+import { Api } from '../../providers';
 import { CallNumber } from '@ionic-native/call-number';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '../../providers/user/user';
 
 /**
  * Generated class for the ProfileViewPage page.

@@ -46,23 +46,23 @@ class m181222_181314_create_kcd_tables extends Migration
         $users = json_decode('[
             {"username":"user1", "firstname":"user", "lastname": "last", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" },
             
-            {"username":"user2", "firstname":"user2", "lastname": "last2", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
+            {"username":"user2", "firstname":"user2", "lastname": "last2", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kamuli", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
             
             {"username":"angalena", "firstname":"Angalena", "lastname": "Jole", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
             
             {"username":"ariana", "firstname":"Ariana", "lastname": "Grande", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
             
-            {"username":"emma", "firstname":"Emma", "lastname": "Wotsan", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
+            {"username":"emma", "firstname":"Emma", "lastname": "Wotsan", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Abim", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
             
-            {"username":"mila", "firstname":"Mila", "lastname": "Kunis", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
+            {"username":"mila", "firstname":"Mila", "lastname": "Kunis", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Abim", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Female", "looking_for":"MARRIAGE" },
             
             {"username":"jhony", "firstname":"Jhony", "lastname": "Depp", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" },
             
             {"username":"matt", "firstname":"Matt", "lastname": "Demon", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" },
             
-            {"username":"morgan", "firstname":"Morgan", "lastname": "Freeman", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" },
+            {"username":"morgan", "firstname":"Morgan", "lastname": "Freeman", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Agago", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" },
             
-            {"username":"tom", "firstname":"Tom", "lastname": "Cruse", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Kampala", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" }
+            {"username":"tom", "firstname":"Tom", "lastname": "Cruse", "phone": "0719398202", "dob": "1987-10-02", "country": "Uganda", "district": "Agago", "city": "Mengo", "profile_image":"", "map_location":"", "gender":"Male", "looking_for":"MARRIAGE" }
         ]');
         $i = 1;
         foreach ($users as $user) {

@@ -27,25 +27,28 @@ export class User {
     });
   }
 
-  login(accountInfo: any, redirect = true) {
-    let seq = this.api.post('user/signin', accountInfo).share();
-    this.settings.setValue('user', accountInfo);
+  login(accountInfo: any) {
+    return new Promise((resolve, reject)=>{
+      let seq = this.api.post('user/signin', accountInfo).share();
+      this.settings.setValue('user', accountInfo);
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (!res.error) {
-        this.setupData(res);
-        if (redirect) this.events.publish('login');
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', JSON.stringify(err));
+      seq.subscribe((res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        if (!res.error) {
+          this.setupData(res);
+          this.events.publish('login');
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      }, err => {
+        console.error('ERROR', JSON.stringify(err));
+        reject(err);
+      });
     });
-
-    return seq;
   }
 
-  signup(accountInfo: any) {
+  signup(accountInfo: any):Promise<any> {
     return new Promise((resolve, reject)=>{
       let seq = this.api.post('user/signup', accountInfo).share();
 

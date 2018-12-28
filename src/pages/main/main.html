@@ -20,7 +20,8 @@
       <ion-label floating>{{ 'ENTER_HOMEAREA' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="look.homearea" name="homearea"></ion-input>
     </ion-item>
-    <button ion-button block (click)="filter()" class="enter">{{ 'FILTER' | translate }}</button>
+    <button ion-button small float-right color="light" (click)="clear()" class="enter">{{ 'CLEAR' | translate }}</button>
+    <button ion-button small float-right color="secondary" (click)="filter()" class="enter">{{ 'FILTER' | translate }}</button>
   </div>
 
   <ion-list>

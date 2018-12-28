@@ -12,16 +12,17 @@
   "LOGIN": "Login",
   "SIGNUP": "Sign up now",
 
-  "ENTER_DISTRICT": "Enter the name of District",
-  "ENTER_HOMEAREA": "Enter home area name",
+  "ENTER_DISTRICT": "District",
+  "ENTER_HOMEAREA": "Home area",
   "LOOKING_FOR": "I am looking for",
   "FEMALE": "Female",
   "MALE": "Male",
-  "ENTER_NOW": "Enter now",
+  "ENTER_NOW": "Search now",
   
   "BACK_BUTTON_TEXT": "Back",
   
   "FILTER": "Filter",
+  "CLEAR": "Clear",
   
   "PROFILE_UPDATE_ERROR": "Error updating profile details.",
   "PROFILE_UPDATED": "Your profile updating successful.",
@@ -54,6 +55,11 @@
   "PROFILE_INFO_2": "* Use your phone number that belongs to you.",
   "PROFILE_INFO_3": "* The phone number must be registered to your name.",
   "PROFILE_INFO_4": "* Impersonation may lead you to criminal case.",
+
+  "FILL_ALL_FIELDS": "Please fill all required fields.",
+
+
+
 
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Search",
