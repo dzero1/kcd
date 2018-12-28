@@ -46,19 +46,24 @@ export class User {
   }
 
   signup(accountInfo: any) {
-    let seq = this.api.post('user/signup', accountInfo).share();
+    return new Promise((resolve, reject)=>{
+      let seq = this.api.post('user/signup', accountInfo).share();
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (!res.error) {
-        this.settings.setValue('user', accountInfo);
-        this.setupData(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
+      seq.subscribe((res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        if (!res.error) {
+          this.settings.setValue('user', accountInfo);
+          this.setupData(res);
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      }, err => {
+        console.error('ERROR', err);
+        reject(err);
+      });
     });
-
-    return seq;
+    //return seq;
   }
 
   updateProfile(accountInfo: any) {
@@ -93,7 +98,7 @@ export class User {
   }
 
   setupData(resp) {
-    this.USER = resp.profile;
+    this.USER = <UserProfile>resp.profile;
     //this.USER.profile = resp.profile;
     this.token = resp.token;
   }

@@ -1,15 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="secondary" small (click)="toggleFilters()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
+  <div class="filters" *ngIf="showFilters" padding>
+    <ion-item>
+      <ion-label floating>{{ 'ENTER_DISTRICT' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="look.district" name="district"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ 'ENTER_HOMEAREA' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="look.homearea" name="homearea"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="filter()" class="enter">{{ 'FILTER' | translate }}</button>
+  </div>
+
   <ion-list>
     <ion-item-sliding *ngFor="let item of currentItems">
       <button ion-item (click)="openItem(item)">
-        <div item-start class="profile-image" [style.backgroundImage]="apiroot + '/user/picture?image=' + item.profile_image" ></div>
+        <div item-start class="profile-image" [style.backgroundImage]="'url(' + apiroot + '/user/picture?image=' + item.profile_image + ')'" ></div>
         <h2>{{item.firstname}} {{item.lastname}}</h2>
         <p *ngIf="_user">{{item.district}} District</p>
       </button>

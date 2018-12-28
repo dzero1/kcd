@@ -4,7 +4,9 @@
   "WELCOME_INTRO2": " app",
   "WELCOME_SUB": "If you are a register user, Use Log in or Sign up as a new user.",
   "MEMBER": "Member",
+  "MEMBER_LOGIN": "Member Login",
   "NON_MEMBER": "New Member",
+  "NON_MEMBER_LOGIN": "Or signup as new member",
   "CHECK_BEFORE_LOG": "Try-out before you log",
   "CHECKIN": "Try",
   "LOGIN": "Login",
@@ -16,9 +18,11 @@
   "FEMALE": "Female",
   "MALE": "Male",
   "ENTER_NOW": "Enter now",
-
+  
   "BACK_BUTTON_TEXT": "Back",
-
+  
+  "FILTER": "Filter",
+  
   "PROFILE_UPDATE_ERROR": "Error updating profile details.",
   "PROFILE_UPDATED": "Your profile updating successful.",
 
@@ -42,7 +46,14 @@
   "PROFILE_TITLE": "Update your profile details",
   "SAVE_PROFILE": "Save",
 
-  "CURRENT_LOCATION": "Current Location",
+  "CURRENT_LOCATION": "Your Current Location",
+
+  "HIS": "his",
+  "HER": "her",
+  "PROFILE_INFO_1": "To get **** contact details, First you have to login.",
+  "PROFILE_INFO_2": "* Use your phone number that belongs to you.",
+  "PROFILE_INFO_3": "* The phone number must be registered to your name.",
+  "PROFILE_INFO_4": "* Impersonation may lead you to criminal case.",
 
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Search",

@@ -81,8 +81,9 @@ class UserController extends RestController
                 $country = is_array($dataArray) ? $dataArray['geoplugin_countryName'] : $dataArray->geoplugin_countryName;
 
                 $details->user_id = $user->id;
-                $details->firstname = "Unknows";
-                $details->lastname = "User";
+                $details->firstname = "";
+                $details->lastname = "";
+                $details->profile_image = "/profile/default.png";
                 if ($country !== null) $details->country = $country;
                 $details->save(false);
 
@@ -132,17 +133,17 @@ class UserController extends RestController
             $details->user_id = $user->id;
             $details->firstname = $firstname;
             $details->lastname = $lastname;
-            if (!self::check($phone)) $details->phone = $phone;
-            if (!self::check($dob)) $details->dob = $dob;
-            if (!self::check($country)) $details->country = $country;
-            if (!self::check($city)) $details->city = $city;
-            if (!self::check($district)) $details->district = $district;
-            if (!self::check($location)) $details->map_location = $location;
-            if (!self::check($gender)) $details->gender = $gender;
-            if (!self::check($looking_for)) $details->looking_for = $looking_for;
+            $details->phone = $phone;
+            $details->dob = $dob;
+            $details->country = $country;
+            $details->city = $city;
+            $details->district = $district;
+            $details->map_location = $location;
+            $details->gender = $gender;
+            $details->looking_for = $looking_for;
 
             if ($details->save(false)){
-                $ret->details = $details;
+                $ret->profile = KcdUserDetails::findOne(['user_id'=>$user->id]);
             }
         } else {
             $ret->error = true;

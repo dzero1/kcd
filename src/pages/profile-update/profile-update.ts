@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Events } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { User, Api, Settings } from '../../providers';
 import {
@@ -30,7 +30,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ProfileUpdatePage {
 
-  account:UserProfile = new UserProfile();
+  account:UserProfile;
 
   profile_pic:string;
 
@@ -302,6 +302,7 @@ export class ProfileUpdatePage {
     public user: User,
     private renderer:Renderer,
     api:Api,
+    private events:Events,
     public toastCtrl: ToastController,
     public sanitizer: DomSanitizer,
     public translateService: TranslateService,
@@ -331,12 +332,14 @@ export class ProfileUpdatePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileUpdatePage');
 
-    if (!this.from){
+    if (this.user){
       this.account = this.user.USER;
       this.account.token = this.user.token;
-    }
+      
+      if (this.account.profile_image) this.profile_pic = this.apiroot + '/user/picture?image=' + this.account.profile_image;
 
-    this.profile_pic = this.apiroot + '/user/picture?image=' + this.account.profile_image;
+      this.loadMap();
+    }
   }
 
   attachmentInput;
@@ -382,6 +385,7 @@ export class ProfileUpdatePage {
     this.account.token = this.user.token;
     this.user.updateProfile(this.account).subscribe((resp:any) => {
       if (!resp.error){
+        this.user.USER = resp.profile;
         if (this.from == 'signup'){
           let toast = this.toastCtrl.create({
             message: this.successSignupString,
@@ -389,6 +393,7 @@ export class ProfileUpdatePage {
             position: 'top'
           });
           toast.present();
+          this.events.publish('login');
           this.navCtrl.push('LookPage');
         } else {
           let toast = this.toastCtrl.create({
@@ -397,9 +402,10 @@ export class ProfileUpdatePage {
             position: 'top'
           });
           toast.present();
-          this.navCtrl.pop();
+          setTimeout(() => {
+            this.navCtrl.pop();            
+          }, 100);
         }
-        
       } else {
         let toast = this.toastCtrl.create({
           message: this.errorString,
@@ -428,10 +434,10 @@ export class ProfileUpdatePage {
     if (this.account.district) location.push(this.account.district);
     if (this.account.country) location.push(this.account.country);
 
-    this.locationString = location.join('%2C');
-
-    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://maps.google.com/maps?q='+this.locationString+'&t=&z=15&ie=UTF8&iwloc=&output=embed');
-
+    if (location.length > 0){
+      this.locationString = location.join('%2C');
+      this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://maps.google.com/maps?q='+this.locationString+'&t=&z=14&ie=UTF8&iwloc=&output=embed');
+    }
     return;
 
     // This code is necessary for browser

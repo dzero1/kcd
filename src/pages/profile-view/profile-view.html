@@ -14,34 +14,51 @@
 
 <ion-content padding>
   <div *ngIf="item">
-    <div class="profile-image" [style.backgroundImage]="apiroot + '/user/picture?image=' + item.profile_image" ></div>
-    <h2 class="name">{{item.firstname}} {{item.lastname}}</h2>
-    <p class="phone">
-      <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
-        <ion-icon ios="ios-call"></ion-icon>
-        {{item.phone}}
-      </button>
-    </p>
+    <div class="profile-image" [style.backgroundImage]="'url(' + apiroot + '/user/picture?image=' + item.profile_image + ')'" ></div>
 
-    <table>
-      <tr>
-        <td>Date og Birth</td><td>{{item.dob}}</td>
-      </tr>
-      <tr>
-        <td>Country</td><td>{{item.country}}</td>
-      </tr>
-      <tr>
-        <td>District</td><td>{{item.district}}</td>
-      </tr>
-      <tr>
-        <td>City</td><td>{{item.city}}</td>
-      </tr>
-      <tr>
-        <td>Gender</td><td>{{item.gender}}</td>
-      </tr>
-      <tr>
-        <td>Looking for</td><td>{{item.looking_for}}</td>
-      </tr>
-    </table>
+    <div class="details" *ngIf="_user">
+      <h2 class="name">{{item.firstname}} {{item.lastname}}</h2>
+      <p class="phone">
+        <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
+          <ion-icon ios="ios-call"></ion-icon>
+          {{item.phone}}
+        </button>
+      </p>
+      <table>
+        <tr>
+          <td>Date og Birth</td><td>{{item.dob}}</td>
+        </tr>
+        <tr>
+          <td>Country</td><td>{{item.country}}</td>
+        </tr>
+        <tr>
+          <td>District</td><td>{{item.district}}</td>
+        </tr>
+        <tr>
+          <td>City</td><td>{{item.city}}</td>
+        </tr>
+        <tr>
+          <td>Gender</td><td>{{item.gender}}</td>
+        </tr>
+        <tr>
+          <td>Looking for</td><td>{{item.looking_for}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="details" *ngIf="_user == undefined">
+      <h3>{{PROFILE_INFO_1}}</h3>
+      <p><i>{{ 'PROFILE_INFO_2' | translate }}</i></p>
+      <p><i>{{ 'PROFILE_INFO_3' | translate }}</i></p>
+      <p><i>{{ 'PROFILE_INFO_4' | translate }}</i></p>
+
+      <div style="margin-top: 30px">
+        {{ 'MEMBER' | translate }}
+        <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
+      </div>
+      <div style="margin-top: 20px">
+        {{ 'NON_MEMBER' | translate }}
+        <button ion-button block color="danger" (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
+      </div>
+    </div>
   </div>
 </ion-content>

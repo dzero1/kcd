@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <h3>{{ 'PROFILE_TITLE' | translate }}</h3>
-  <ion-list>
+  <ion-list *ngIf="account">
 
     <ion-label>{{ 'PROFILE_IMAGE' | translate }}</ion-label>
     <div class="profile-wraper">
@@ -26,22 +26,23 @@
 
     <ion-item>
       <ion-label flex>{{ 'FIRST_NAME' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.firstname" name="firstname"></ion-input>
+      <ion-input type="text" text-right [(ngModel)]="account.firstname" name="firstname"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label flex>{{ 'LAST_NAME' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.lastname" name="lastname"></ion-input>
+      <ion-input type="text" text-right [(ngModel)]="account.lastname" name="lastname"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label flex>{{ 'PHONE' | translate }}</ion-label>
-      <ion-input type="phone" [(ngModel)]="account.phone" name="phone"></ion-input>
+      <ion-input type="phone" text-right [(ngModel)]="account.phone" name="phone"></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label flex>{{ 'DOB' | translate }}</ion-label>
-      <ion-input type="date" [(ngModel)]="account.dob" name="dob"></ion-input>
+      <!-- <ion-input type="date" text-right [(ngModel)]="account.dob" name="dob"></ion-input> -->
+      <ion-datetime displayFormat="DD MMM, YYYY" [(ngModel)]="account.dob" name="dob"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -79,25 +80,24 @@
     <!-- If other country -->
     <ion-item *ngIf="account.country !== 'Uganda'">
       <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
+      <ion-input type="text" text-right [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
     </ion-item>
 
 
     <ion-item>
       <ion-label flex>{{ 'CITY' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.city" name="city" (ionChange)="loadMap()"></ion-input>
+      <ion-input type="text" text-right [(ngModel)]="account.city" name="city" (ionChange)="loadMap()"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label flex>{{ 'CURRENT_LOCATION' | translate }}</ion-label>
-    </ion-item>
     <!-- <div #map_canvas id="map_canvas"></div> -->
     <div padding class="map-area" id="map">
-        <div class="mapouter">
-          <div class="gmap_canvas">
-            <iframe width="600" height="500" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-          </div>
+      <ion-label flex>{{ 'CURRENT_LOCATION' | translate }}</ion-label>
+    
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe height="300" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
+      </div>
     </div>
 
     <div padding>

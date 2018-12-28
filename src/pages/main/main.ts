@@ -23,6 +23,8 @@ export class MainPage {
   apiroot:string;
   _user:any;
 
+  showFilters:boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public items:Items, private api:Api, private user:User) {
     if (navParams.get('look')) this.look = navParams.get('look');
@@ -40,14 +42,22 @@ export class MainPage {
   }
 
   openItem(item:any){
-    if (this._user){
+    //if (this._user){
       this.navCtrl.push('ProfileViewPage', {"item": item});
-    } else {
-      this.navCtrl.push('LoginPage');
-    }
+    //} else {
+      //this.navCtrl.push('LoginPage');
+    //}
   }
 
   back(){
     this.navCtrl.pop();
+  }
+
+  toggleFilters(){
+    this.showFilters = !this.showFilters;
+  }
+
+  filter(){
+    
   }
 }

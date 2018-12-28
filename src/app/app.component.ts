@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 @Component({
   //templateUrl: 'app.html',
   template: `
-    <ion-menu [content]="content" #mainMenu id="menu">
+    <ion-menu [content]="content" #mainMenu id="menu" *ngIf="_user != undefined">
       <ion-header>
         <ion-toolbar>
           <ion-title>
@@ -20,11 +20,11 @@ import { Storage } from '@ionic/storage';
         </ion-toolbar>
       </ion-header>
 
-      <ion-content id="side-menu" *ngIf="_user">
+      <ion-content id="side-menu">
         <ion-list id="menu-list">
           <ion-item color="none" id="menu-list-item1" (click)="openProfile()">
             <ion-thumbnail item-left>
-              <div class [style.backgroundImage]="apiroot + '/user/picture?image=' + _user.profile_image"></div>
+              <div class="profile-image" [style.backgroundImage]=" 'url(' + apiroot + '/user/picture?image=' + _user.profile_image + ')' "></div>
             </ion-thumbnail>
             <h2>{{_user.firstname}} {{_user.lastname}}</h2>
           </ion-item>

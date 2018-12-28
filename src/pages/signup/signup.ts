@@ -35,9 +35,19 @@ export class SignupPage {
   doSignup() {
     // Attempt to login in through our User service
     if (this.account.password == this.account.password2){
-      this.user.signup(this.account).subscribe((resp:any) => {
-        if (!resp.error) this.navCtrl.push('ProfileUpdatePage', {from:'signup'});
-      }, (err) => {
+      this.user.signup(this.account).then((resp:any) => {
+        if (!resp.error) {
+          this.navCtrl.push('ProfileUpdatePage', {from:'signup'});
+        } else {
+          // Unable to sign up
+          let toast = this.toastCtrl.create({
+            message: resp.message,
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+        }
+      }).catch(err => {
         // Unable to sign up
         let toast = this.toastCtrl.create({
           message: this.signupErrorString,

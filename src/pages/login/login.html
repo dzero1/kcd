@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Member Login</h2>
+  <h2>{{ 'MEMBER_LOGIN' | translate }}</h2>
   <div style="margin-top: 50px">
     <ion-item>
       <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
@@ -26,7 +26,7 @@
     <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
   </div>
   <div style="margin-top: 50px">
-      Or signup as new member
+      {{ 'NON_MEMBER_LOGIN' | translate }}
       <button ion-button block color="danger" (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
   </div>
 </ion-content>
