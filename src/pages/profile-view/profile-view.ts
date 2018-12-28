@@ -70,9 +70,9 @@ export class ProfileViewPage {
   loadMap() {
 
     let location = [];
-    if (this._user.city) location.push(this._user.city);
-    if (this._user.district) location.push(this._user.district);
-    if (this._user.country) location.push(this._user.country);
+    if (this.item.city) location.push(this.item.city);
+    if (this.item.district) location.push(this.item.district);
+    if (this.item.country) location.push(this.item.country);
 
     if (location.length > 0){
       this.locationString = location.join('%2C');

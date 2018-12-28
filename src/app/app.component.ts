@@ -10,7 +10,6 @@ import { Storage } from '@ionic/storage';
 import { User } from '../providers/user/user';
 
 @Component({
-  //templateUrl: 'app.html',
   template: `
     <ion-menu [content]="content" #mainMenu id="menu" *ngIf="_user != undefined">
       <ion-header>
