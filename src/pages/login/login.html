@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <h2>{{ 'MEMBER_LOGIN' | translate }}</h2>
-  <div style="margin-top: 50px">
+  <div style="margin-top: 50px" padding>
     <ion-item>
       <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
       <ion-input type="text" autocomplete="off" [(ngModel)]="account.username" name="username"></ion-input>
@@ -24,9 +24,10 @@
       <ion-input type="password" autocomplete="off" [(ngModel)]="account.password" name="password"></ion-input>
     </ion-item> 
     <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
-  </div>
-  <div style="margin-top: 50px">
-      {{ 'NON_MEMBER_LOGIN' | translate }}
-      <button ion-button block color="danger" (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
+
+    <div class="sign-up-area">
+      {{ 'NON_MEMBER' | translate }} <a (click)="signup()">{{ 'SIGNUP' | translate }}</a>
+    </div>
+
   </div>
 </ion-content>

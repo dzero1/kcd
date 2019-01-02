@@ -12,59 +12,76 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div *ngIf="item">
-    <div class="profile-image" [style.backgroundImage]="'url(' + apiroot + '/user/picture?image=' + item.profile_image + ')'" ></div>
-
-    <div class="details" *ngIf="_user">
+    <div class="profile-image" [style.backgroundImage]="'url(' + apiroot + '/user/picture?image=' + item.profile_image + ')'" >
       <h2 class="name">{{item.firstname}} {{item.lastname}}</h2>
-      <p class="phone">
-        <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
-          <ion-icon ios="ios-call"></ion-icon>
-          {{item.phone}}
-        </button>
-      </p>
-      <table>
-        <tr>
-          <td>Date og Birth</td><td>{{item.dob}}</td>
-        </tr>
-        <tr>
-          <td>Country</td><td>{{item.country}}</td>
-        </tr>
-        <tr>
-          <td>District</td><td>{{item.district}}</td>
-        </tr>
-        <tr>
-          <td>City</td><td>{{item.city}}</td>
-        </tr>
-        <tr>
-          <td>Gender</td><td>{{item.gender}}</td>
-        </tr>
-        <tr>
-          <td>Looking for</td><td>{{item.looking_for}}</td>
-        </tr>
-      </table>
+    </div>
 
-      <div padding class="map-area" id="map">
-        <ion-label flex>{{ 'CURRENT_LOCATION' | translate }}</ion-label>
-        <div class="mapouter">
-          <div class="gmap_canvas">
-            <iframe height="300" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    <div padding>
+      <div class="details" *ngIf="_user">
+        <p class="phone">
+          <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
+            <ion-icon ios="ios-call"></ion-icon>
+            {{item.phone}}
+          </button>
+        </p>
+        <table>
+          <tr>
+            <td>{{ 'DOB' | translate }}</td><td>{{item.dob}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'COUNTRY' | translate }}</td><td>{{item.country}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'DISTRICT' | translate }}</td><td>{{item.district}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'CITY' | translate }}</td><td>{{item.city}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'GENDER' | translate }}</td><td>{{item.gender}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'LOOKING_FOR' | translate }}</td><td>{{item.looking_for}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'HAVE_EVER_MARRIED' | translate }}</td><td>{{item.married ? 'Yes' : 'No' }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'HAVE_CHILDREN' | translate }}</td><td>{{item.children ? 'Yes' : 'No' }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'LANGUAGE' | translate }}</td><td>{{item.language}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'TRIBE' | translate }}</td><td>{{item.tribe}}</td>
+          </tr>
+          <tr>
+            <td>{{ 'EDUCATION_LEVEL' | translate }}</td><td>{{ item.education  | translate }}</td>
+          </tr>
+        </table>
+
+        <div padding class="map-area" id="map" *ngIf="mapUrl">
+          <ion-label flex>{{ 'CURRENT_LOCATION' | translate }}</ion-label>
+          <div class="mapouter">
+            <div class="gmap_canvas">
+              <iframe height="300" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div>
-    <div class="details" *ngIf="_user == undefined">
-      <h3>{{PROFILE_INFO_1}}</h3>
-
-      <div style="margin-top: 30px">
-        {{ 'MEMBER' | translate }}
-        <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
       </div>
-      <div style="margin-top: 20px">
-        {{ 'NON_MEMBER' | translate }}
-        <button ion-button block color="danger" (click)="signup()" class="signup">{{ 'SIGNUP' | translate }}</button>
+      <div class="details" *ngIf="_user == undefined">
+        <h3>{{PROFILE_INFO_1}}</h3>
+
+        <div class="sign-in-area">
+          {{ 'MEMBER' | translate }}
+          <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
+        </div>
+        <div class="sign-up-area">
+          {{ 'NON_MEMBER' | translate }} <a (click)="signup()">{{ 'SIGNUP' | translate }}</a>
+        </div>
       </div>
     </div>
   </div>

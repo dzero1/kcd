@@ -11,7 +11,7 @@
 <ion-content padding>
   <h3>{{ 'SIGNUP_TITLE' | translate }}</h3>
   
-  <ion-list>
+  <ion-list padding style="margin: 0;">
     <div [formGroup]="validations_username">
       <ion-item>
         <ion-label floating>Username</ion-label>
@@ -66,12 +66,19 @@
       </div>
     </div>
 
-    <p><i>{{ 'PROFILE_INFO_2' | translate }}</i></p>
-    <p><i>{{ 'PROFILE_INFO_3' | translate }}</i></p>
-    <p><i>{{ 'PROFILE_INFO_4' | translate }}</i></p>
+    <p>
+      <span><i>{{ 'PROFILE_INFO_2' | translate }}</i></span>
+      <span><i>{{ 'PROFILE_INFO_3' | translate }}</i></span>
+      <span><i>{{ 'PROFILE_INFO_4' | translate }}</i></span>
+    </p>
     
     <div padding>
       <button ion-button color="primary" (click)="doSignup()" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+    </div>
+
+
+    <div class="sign-up-area">
+      {{ 'MEMBER' | translate }} <a (click)="login()">{{ 'LOGIN' | translate }}</a>
     </div>
 
   </ion-list>

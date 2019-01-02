@@ -9,9 +9,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-
-  <div class="filters" *ngIf="showFilters" padding>
+<ion-content padding>
+  <div class="filters" *ngIf="showFilters">
     <ion-item>
       <ion-label floating>{{ 'ENTER_DISTRICT' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="look.district" name="district"></ion-input>
@@ -25,13 +24,13 @@
   </div>
 
   <ion-list>
+    <div *ngIf="currentItems.lenght == 0">{{ 'NOTHING_FOUND' | translate }}</div>
     <ion-item-sliding *ngFor="let item of currentItems">
-      <button ion-item (click)="openItem(item)">
+      <button ion-item (click)="openItem(item)" *ngIf="item.id != _user.id">
         <div item-start class="profile-image" [style.backgroundImage]="'url(' + apiroot + '/user/picture?image=' + item.profile_image + ')'" ></div>
         <h2>{{item.firstname}} {{item.lastname}}</h2>
         <p *ngIf="_user">{{item.district}} District</p>
       </button>
     </ion-item-sliding>
   </ion-list>
-
 </ion-content>

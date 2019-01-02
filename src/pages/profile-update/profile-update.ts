@@ -42,6 +42,9 @@ export class ProfileUpdatePage {
   successString:string;
 
 
+  locationString:string;
+  mapUrl:any;
+
   public allCountries:Array<any> = [ 
     {name: 'Afghanistan', code: 'AF'}, 
     {name: 'Åland Islands', code: 'AX'}, 
@@ -425,8 +428,6 @@ export class ProfileUpdatePage {
     });
   }
 
-  locationString:string;
-  mapUrl:any;
   loadMap() {
 
     let location = [];

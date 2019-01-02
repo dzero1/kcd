@@ -2,7 +2,9 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject
+use yii\web\IdentityInterface;
+
+class User extends \yii\base\BaseObject implements IdentityInterface
 {
     public $id;
     public $username;

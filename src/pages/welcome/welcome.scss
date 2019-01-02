@@ -1,63 +1,75 @@
 page-welcome {
-  .splash-bg {
-    position: relative;
-    background: url('../assets/img/splashbg.png') no-repeat transparent;
-    background-size: cover;
-    height: 34%;
-    z-index: 1;
-    background-repeat: repeat-x;
-    animation: animatedBackground 40s linear infinite;
-
-    .app-title{
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-size: 5.6rem;
-      top: 15%;
-      color: white;
-      text-shadow: 0px 0px 11px #4e4e4e;
-    }
-  }
-
-  @keyframes animatedBackground {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
-  }
 
   .splash-info {
     position: relative;
     z-index: 2;
-    margin-top: -64px;
+    padding-top: 15vh;
+    margin-bottom: 10vh;
     text-align: center;
+
+    .splash-bg {
+      position: relative;
+      height: 34%;
+      z-index: 1;
+
+      .app-title{
+        width: 100%;
+        text-align: center;
+        font-size: 2.5rem;
+        top: 15%;
+        color: map-get($map: $colors, $key: primary);
+
+        background: map-get($map: $colors, $key: primary );
+        background: -moz-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, map-get($map: $colors, $key: primary )), color-stop(100%, map-get($map: $colors, $key: secondary )));
+        background: -webkit-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+        background: -o-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+        background: -ms-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+        background: linear-gradient(to right, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1199fb', endColorstr='#4803a1', GradientType=1 );
+        
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
   }
+
   .splash-logo {
     margin: auto;
-    background: url(../assets/img/appicon.jpg) repeat #ffffff;
-    background-size: 80%;
+    background: url(../assets/img/appicon.png) repeat #ffffff;
+    //background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: 0px 0px 12px 0px #a5a5a585;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
+    background-size: contain;
+    width: 80px;
+    height: 58px;
+    //box-shadow: 0px 0px 12px 0px #a5a5a585;
+    //border-radius: 50%;
     margin-bottom: 15px;
   }
   .splash-intro {
-    font-size: 18px;
-    font-weight: bold;
+    //font-size: 18px;
+    //font-weight: bold;
+    font-size: 1.7rem;
     max-width: 80%;
-    margin: auto;
+    margin: 20px auto;
   }
-  button.try,
-  button.login,
-  button.signup {
-    margin-top: 15px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-    margin-top: 15px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 
-    &.activated {
-      background-color: rgb(220, 220, 220);
+  .try-area{
+    text-align: center;
+  }
+
+  .bottom-bar{
+    text-align: center;
+    span{
+      height: 4px;
+      width: 30vw;
+      display: inline-block;
+      background: map-get($map: $colors, $key: light2);
+      border-radius: 2px;
+      bottom: 5px;
+      margin: 0 auto;
+      left: calc(50% - 15vw);
     }
   }
 }

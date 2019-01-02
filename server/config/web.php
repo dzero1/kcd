@@ -23,14 +23,14 @@ $config = [
             'enableCsrfValidation' => false,
         ],
         'response' => [
-            'format' => yii\web\Response::FORMAT_JSON,
+            //'format' => yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\Users',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

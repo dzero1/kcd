@@ -12,96 +12,136 @@
 
 </ion-header>
 
-<ion-content padding>
-  <h3>{{ 'PROFILE_TITLE' | translate }}</h3>
+<ion-content>
+  <div padding>
+    <h3>{{ 'PROFILE_TITLE' | translate }}</h3>
+  </div>
+  
   <ion-list *ngIf="account">
 
-    <ion-label>{{ 'PROFILE_IMAGE' | translate }}</ion-label>
-    <div class="profile-wraper">
+    <!-- <ion-label>{{ 'PROFILE_IMAGE' | translate }}</ion-label> -->
+    <div class="profile-wraper" *ngIf="profile_pic">
       <div class="profile-image" [style.backgroundImage]="'url('+profile_pic+')'" ></div>
-    </div>
-    <button ion-button block color="primary" id="attachment-btn" (click)="openFileDialog()">
-      {{ 'IMAGE_CHANGE' | translate }}
-    </button>
-
-    <ion-item>
-      <ion-label flex>{{ 'FIRST_NAME' | translate }}</ion-label>
-      <ion-input type="text" text-right [(ngModel)]="account.firstname" name="firstname"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label flex>{{ 'LAST_NAME' | translate }}</ion-label>
-      <ion-input type="text" text-right [(ngModel)]="account.lastname" name="lastname"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label flex>{{ 'PHONE' | translate }}</ion-label>
-      <ion-input type="phone" text-right [(ngModel)]="account.phone" name="phone"></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label flex>{{ 'DOB' | translate }}</ion-label>
-      <!-- <ion-input type="date" text-right [(ngModel)]="account.dob" name="dob"></ion-input> -->
-      <ion-datetime displayFormat="DD MMM, YYYY" [(ngModel)]="account.dob" name="dob"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label flex>{{ 'GENDER' | translate }}</ion-label>
-      <ion-select [(ngModel)]="account.gender">
-        <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
-        <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label flex>{{ 'LOOKING_FOR' | translate }}</ion-label>
-      <ion-select [(ngModel)]="account.looking_for">
-        <ion-option value="MARRIAGE">{{ 'MARRIAGE' | translate }}</ion-option>
-        <ion-option value="SERIOUS_RELATIONSHIP">{{ 'SERIOUS_RELATIONSHIP' | translate }}</ion-option>
-        <ion-option value="RELATIONSHIP">{{ 'RELATIONSHIP' | translate }}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label flex>{{ 'COUNTRY' | translate }}</ion-label>
-      <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
-        <ion-option *ngFor="let c of allCountries" [value]="c.name">{{c.name}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <!-- If uganda select -->
-    <ion-item *ngIf="account.country == 'Uganda'">
-      <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
-      <ion-select [(ngModel)]="account.district" (ionChange)="loadMap()">
-        <ion-option *ngFor="let udists of uganda_districts" [value]="udists">{{udists}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <!-- If other country -->
-    <ion-item *ngIf="account.country !== 'Uganda'">
-      <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
-      <ion-input type="text" text-right [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label flex>{{ 'CITY' | translate }}</ion-label>
-      <ion-input type="text" text-right [(ngModel)]="account.city" name="city" (ionChange)="loadMap()"></ion-input>
-    </ion-item>
-
-    <!-- <div #map_canvas id="map_canvas"></div> -->
-    <div padding class="map-area" id="map">
-      <ion-label flex>{{ 'YOUR_CURRENT_LOCATION' | translate }}</ion-label>
-    
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe height="300" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-        </div>
-      </div>
+      
     </div>
 
     <div padding>
-      <button ion-button color="primary" (click)="updateProfile()" block>{{ 'SAVE_PROFILE' | translate }}</button>
+      <ion-item>
+        <ion-label flex>{{ 'PROFILE_IMAGE' | translate }}</ion-label>
+        <button ion-button outline item-end id="attachment-btn" (click)="openFileDialog()">
+          {{ 'IMAGE_CHANGE' | translate }}
+        </button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'FIRST_NAME' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.firstname" name="firstname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'LAST_NAME' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.lastname" name="lastname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'PHONE' | translate }}</ion-label>
+        <ion-input type="phone" text-right [(ngModel)]="account.phone" name="phone"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label flex>{{ 'DOB' | translate }}</ion-label>
+        <!-- <ion-input type="date" text-right [(ngModel)]="account.dob" name="dob"></ion-input> -->
+        <ion-datetime displayFormat="DD MMM, YYYY" [(ngModel)]="account.dob" name="dob"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'GENDER' | translate }}</ion-label>
+        <ion-select [(ngModel)]="account.gender">
+          <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
+          <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'LOOKING_FOR' | translate }}</ion-label>
+        <ion-select [(ngModel)]="account.looking_for">
+          <ion-option value="MARRIAGE">{{ 'MARRIAGE' | translate }}</ion-option>
+          <ion-option value="SERIOUS_RELATIONSHIP">{{ 'SERIOUS_RELATIONSHIP' | translate }}</ion-option>
+          <ion-option value="RELATIONSHIP">{{ 'RELATIONSHIP' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'HAVE_EVER_MARRIED' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="account.married"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'HAVE_CHILDREN' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="account.children"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'LANGUAGE' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.language" name="language"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'TRIBE' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.tribe" name="tribe"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'EDUCATION_LEVEL' | translate }}</ion-label>
+        <ion-select [(ngModel)]="account.education">
+          <ion-option value="ORDINARY_LEVEL">{{ 'ORDINARY_LEVEL' | translate }}</ion-option>
+          <ion-option value="ADVANCED_LEVEL">{{ 'ADVANCED_LEVEL' | translate }}</ion-option>
+          <ion-option value="HIGHER_LEVEL">{{ 'HIGHER_LEVEL' | translate }}</ion-option>
+          <ion-option value="UNIVERSITY_LEVEL">{{ 'UNIVERSITY_LEVEL' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'COUNTRY' | translate }}</ion-label>
+        <ion-select [(ngModel)]="account.country" (ionChange)="loadMap()">
+          <ion-option *ngFor="let c of allCountries" [value]="c.name">{{c.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- If uganda select -->
+      <ion-item *ngIf="account.country == 'Uganda'">
+        <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
+        <ion-select [(ngModel)]="account.district" (ionChange)="loadMap()">
+          <ion-option *ngFor="let udists of uganda_districts" [value]="udists">{{udists}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- If other country -->
+      <ion-item *ngIf="account.country !== 'Uganda'">
+        <ion-label flex>{{ 'DISTRICT' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.district" name="district" (ionChange)="loadMap()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label flex>{{ 'CITY' | translate }}</ion-label>
+        <ion-input type="text" text-right [(ngModel)]="account.city" name="city" (ionChange)="loadMap()"></ion-input>
+      </ion-item>
+
+
+      <!-- <div #map_canvas id="map_canvas"></div> -->
+      <div padding class="map-area" id="map" *ngIf="mapUrl">
+        <ion-label flex>{{ 'YOUR_CURRENT_LOCATION' | translate }}</ion-label>
+      
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe height="300" id="gmap_canvas" [src]="mapUrl" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div padding>
+        <button ion-button color="primary" (click)="updateProfile()" block>{{ 'SAVE_PROFILE' | translate }}</button>
+      </div>
     </div>
     
   </ion-list>

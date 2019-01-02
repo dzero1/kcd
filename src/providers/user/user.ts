@@ -20,7 +20,7 @@ export class User {
       this.settings.load().then( ()=>{
         this.settings.getValue('user').then((res)=>{
           if (res) {
-            this.login(res);
+            this.login(res).catch((e)=>console.log(e));
           }
         });
       });
@@ -124,6 +124,11 @@ export class UserProfile {
   map_location: String
   phone: String
   profile_image:String
+  married: Boolean
+  education:String
+  tribe:String
+  children: Boolean
+  language:String
   updated_at:String
   user_id:String
 

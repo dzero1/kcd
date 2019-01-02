@@ -26,7 +26,8 @@ import { User } from '../providers/user/user';
             <ion-thumbnail item-left>
               <div class="profile-image" [style.backgroundImage]=" 'url(' + apiroot + '/user/picture?image=' + _user.profile_image + ')' "></div>
             </ion-thumbnail>
-            <h2>{{_user.firstname}} {{_user.lastname}}</h2>
+            <h2>{{_user.firstname}}</h2>
+            <p>{{_user.lastname}}</p>
           </ion-item>
         </ion-list>
         <button id="close-button" ion-button color="light" block icon-left style="text-align:left;" (click)="logout()">

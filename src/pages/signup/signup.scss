@@ -1,5 +1,12 @@
 page-signup {
+    text-align: center;
     .item{
         padding: 0;
+    }
+    p{
+        text-align: left;
+        span{
+            display: block;
+        }
     }
 }

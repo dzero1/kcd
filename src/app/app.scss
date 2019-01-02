@@ -15,6 +15,85 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+*{
+    font-family: 'Quicksand', sans-serif;
+}
+button{
+
+&.item.activated{
+    background: #cccccc17 !important;
+}
+    
+&.button-default{
+    .button-inner{
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
+    }
+
+    height: 4rem;
+
+    background: map-get($map: $colors, $key: primary ) !important;
+    background: -moz-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%) !important;
+    background: -webkit-gradient(left top, right top, color-stop(0%, map-get($map: $colors, $key: primary )), color-stop(100%, map-get($map: $colors, $key: secondary ))) !important;
+    background: -webkit-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%) !important;
+    background: -o-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%) !important;
+    background: -ms-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%) !important;
+    background: linear-gradient(to right, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1199fb', endColorstr='#4803a1', GradientType=1 ) !important;
+
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.3) !important;
+    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.3) !important;
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.3) !important;
+
+    border-radius: 6px !important;
+    margin: 10px auto !important;
+    /* &.button-block{
+    width: 85% !important;
+    } */
+}
+}
+
+a{
+color: map-get($map: $colors, $key: light) !important;
+&:active{
+    color: map-get($map: $colors, $key: light) !important;
+}
+}
+.app-title{
+font-family: 'Pacifico', cursive, 'Quicksand', sans-serif !important;
+.toolbar-title{
+    font-family: 'Pacifico', cursive, 'Quicksand', sans-serif !important;
+    color: map-get($map: $colors, $key: primary )
+}
+}
+
+.header-md{
+&::after{
+    background-image: none !important;
+    background: none !important;
+}
+}
+.toolbar-background{
+background: transparent !important;
+border: none !important;
+}
+
+ion-item{
+padding: 0 !important;
+}
+input, ion-select .select-text, ion-datetime .datetime-text, ion-picker-cmp .picker-opt{
+color: map-get($map: $colors, $key: light ) !important;
+}
+ion-toggle{
+.toggle-icon{
+    .toggle-inner{
+    background-color: map-get($map: $colors, $key: light)
+    }
+}
+}
+
+
 #side-menu{
     #menu-list{
         h2{
@@ -28,8 +107,11 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #fff;
+    background: none !important;
+    background-color: transparent !important;
+    color: map-get($map: $colors, $key: light );
     text-align: left;
+    box-shadow: none !important;
 }
 
 .profile-image{
@@ -40,9 +122,18 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0px 0px 8px 1px #ccc;
+}
+
+#menu-list{
+    ion-item{
+        padding-left: 15px !important;
+    }
+    .profile-image{
+        border-radius: 50%;
+    }
+    h2{
+        color: map-get($map: $colors, $key: light);
+    }
 }
 
 ion-thumbnail{
@@ -54,4 +145,15 @@ ion-thumbnail{
 
 .validation-errors{
     color: map-get($map: $colors, $key: danger);
+}
+
+.sign-in-area{
+    margin-top: 20px;
+    text-align: center;
+}
+.sign-up-area{
+    border-top: 1px solid map-get($map: $colors, $key:ash );
+    padding-top: 10px;
+    text-align: center;
+    margin-top: 20px;
 }

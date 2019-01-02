@@ -11,8 +11,8 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color:        #000;
-$background-color:  #fff;
+$text-color:        #686985;
+$background-color:  #1c1c29;
 
 
 // Named Color Variables
@@ -24,10 +24,13 @@ $background-color:  #fff;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #02c6e9,
+  secondary:  #9202c5,
+  third:      #2736cf,
   danger:     #f53d3d,
   light:      #f4f4f4,
+  light2:     #b6b6b6,
+  ash:        #424356,
   dark:       #222
 );
 
@@ -79,18 +82,3 @@ $colors: (
 
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
-
-*{
-  font-family: 'Quicksand', sans-serif;
-}
-button{
-  font-weight: bold;
-}
-
-.app-title{
-  font-family: 'Pacifico', cursive, 'Quicksand', sans-serif !important;
-  .toolbar-title{
-    font-family: 'Pacifico', cursive, 'Quicksand', sans-serif !important;
-    color: map-get($map: $colors, $key: primary )
-  }
-}

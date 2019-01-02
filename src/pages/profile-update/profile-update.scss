@@ -1,14 +1,20 @@
 page-profile-update {
+    text-align: center;
+    
     .profile-wraper{
         text-align: center;
         .profile-image{
-            width: 200px;
-            height: 200px;
+            width: 101%;
+            height: 400px;
             display: inline-block;
             margin: 0 auto;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            display: block;
+        }
+        #attachment-btn{
+            margin:15px 0;
         }
     }
     #map_canvas {
@@ -23,6 +29,15 @@ page-profile-update {
         overflow: hidden;
     }
 
-    .mapouter{text-align:right;height:300px;width:100%;}
-    .gmap_canvas {overflow:hidden;background:none!important;height:300px;width::100%;}
+    .mapouter{
+        text-align:right;
+        height:300px;
+        width:100%;
+    }
+    .gmap_canvas {
+        overflow:hidden;
+        background:none !important;
+        height:300px;
+        width:100%;
+    }
 }

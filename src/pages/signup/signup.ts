@@ -132,4 +132,8 @@ export class SignupPage {
     }
   }
 
+  login() {
+    this.navCtrl.push('LoginPage');
+  }
+
 }

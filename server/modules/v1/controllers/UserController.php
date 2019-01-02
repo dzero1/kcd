@@ -23,6 +23,8 @@ class UserController extends RestController
 
     public function actionSignin()
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
         $ret = new \stdClass;
         $ret->error = false;
 
@@ -110,17 +112,6 @@ class UserController extends RestController
 
         $user = KcdUsers::findOne(['access_token'=>$token]);
         if ($user){
-            $firstname = $request->post('firstname');
-            $lastname = $request->post('lastname');
-            $phone = $request->post('phone');
-            $dob = $request->post('dob');
-            $country = $request->post('country');
-            $city = $request->post('city');
-            $district = $request->post('district');
-            $gender = $request->post('gender');
-            $looking_for = $request->post('looking_for');
-            //$image = $request->post('profile');
-            $location = $request->post('location');
 
             $details = new KcdUserDetails();
             $have_details = KcdUserDetails::findOne(['user_id'=>$user->id]);
@@ -133,16 +124,23 @@ class UserController extends RestController
             }
 
             $details->user_id = $user->id;
-            $details->firstname = $firstname;
-            $details->lastname = $lastname;
-            $details->phone = $phone;
-            $details->dob = $dob;
-            $details->country = $country;
-            $details->city = $city;
-            $details->district = $district;
-            $details->map_location = $location;
-            $details->gender = $gender;
-            $details->looking_for = $looking_for;
+            $details->firstname = $request->post('firstname');
+            $details->lastname = $request->post('lastname');
+            $details->phone = $request->post('phone');
+            $details->dob = $request->post('dob');
+            $details->country = $request->post('country');
+            $details->city = $request->post('city');
+            $details->district = $request->post('district');
+
+            $details->married = $request->post('married');
+            $details->education = $request->post('education');
+            $details->tribe = $request->post('tribe');
+            $details->children = $request->post('children');
+            $details->language = $request->post('language');
+
+            $details->map_location = $request->post('location');
+            $details->gender = $request->post('gender');
+            $details->looking_for = $request->post('looking_for');
 
             if ($details->save(false)){
                 $ret->profile = KcdUserDetails::findOne(['user_id'=>$user->id]);

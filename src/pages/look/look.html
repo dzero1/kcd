@@ -15,26 +15,26 @@
     <ion-title class="app-title">{{ 'APP_TITLE' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
-  
-  <ion-content padding>
-    <h2>Search from your area</h2>
-    <div style="margin-top: 20px">
-      <ion-item>
-        <ion-label floating>{{ 'ENTER_DISTRICT' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="look.district" name="district"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{ 'ENTER_HOMEAREA' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="look.homearea" name="homearea"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{ 'LOOKING_FOR' | translate }}</ion-label>
-        <ion-select [(ngModel)]="look.gender">
-          <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
-          <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
-        </ion-select>
-      </ion-item>
-      <button ion-button block (click)="enternow()" class="enter">{{ 'ENTER_NOW' | translate }}</button>
-    </div>
-  </ion-content>
+
+<ion-content padding>
+  <h2>Search from your area</h2>
+  <div style="margin-top: 20px" padding>
+    <ion-item>
+      <ion-label floating>{{ 'ENTER_DISTRICT' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="look.district" name="district"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ 'ENTER_HOMEAREA' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="look.homearea" name="homearea"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ 'LOOKING_FOR' | translate }}</ion-label>
+      <ion-select [(ngModel)]="look.gender">
+        <ion-option value="Female">{{ 'FEMALE' | translate }}</ion-option>
+        <ion-option value="Male">{{ 'MALE' | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button block (click)="enternow()" class="enter">{{ 'ENTER_NOW' | translate }}</button>
+  </div>
+</ion-content>
   

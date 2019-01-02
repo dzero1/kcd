@@ -66,8 +66,9 @@ export class ProfileViewPage {
   }
 
   locationString:string;
-  mapUrl:any;
+  mapUrl:any = false;
   loadMap() {
+    this.mapUrl = false;
 
     let location = [];
     if (this.item.city) location.push(this.item.city);
