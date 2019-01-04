@@ -73,12 +73,18 @@
 
       <ion-item>
         <ion-label flex>{{ 'HAVE_EVER_MARRIED' | translate }}</ion-label>
-        <ion-toggle [(ngModel)]="account.married"></ion-toggle>
+        <ion-select [(ngModel)]="account.married">
+          <ion-option value="YES">{{ 'YES' | translate }}</ion-option>
+          <ion-option value="NO">{{ 'NO' | translate }}</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label flex>{{ 'HAVE_CHILDREN' | translate }}</ion-label>
-        <ion-toggle [(ngModel)]="account.children"></ion-toggle>
+        <ion-select [(ngModel)]="account.children">
+          <ion-option value="YES">{{ 'YES' | translate }}</ion-option>
+          <ion-option value="NO">{{ 'NO' | translate }}</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
