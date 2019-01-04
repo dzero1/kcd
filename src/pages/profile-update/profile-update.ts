@@ -1,18 +1,8 @@
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, Events } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { Api, Settings } from '../../providers';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker,
-  Environment
-} from '@ionic-native/google-maps';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { Api } from '../../providers';
+
 import { UserProfile, User } from '../../providers/user/user';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -294,8 +284,6 @@ export class ProfileUpdatePage {
   public uganda_districts:Array<string> = ["Abim","Adjumani","Agago","Alebtong","Amolatar","Amudat","Amuria","Amuru","Apac","Arua","Budaka","Bududa","Bugiri","Bugweri","Buhweju","Buikwe","Bukedea","Bukomansimbi","Bukwa","Bulambuli","Buliisa","Bundibugyo","Bunyangabu","Bushenyi","Busia","Butaleja","Butambala","Butebo","Buvuma","Buyende","Dokolo","Gomba","Gulu","Hoima","Ibanda","Iganga","Isingiro","Jinja","Kaabong","Kabale","Kabarole","Kaberamaido","Kagadi","Kakumiro","Kalangala","Kaliro","Kalungu","Kampala","Kamuli","Kamwenge","Kanungu","Kapchorwa","Kapelebyong","Karenga","Kasanda","Kasese","Katakwi","Kayunga","Kazo","Kibaale","Kiboga","Kibuku","Kibuube","Kiruhura","Kiryandongo","Kisoro","Kitagwenda","Kitgum","Koboko","Kole","Kotido","Kumi","Kwania","Kween","Kyankwanzi","Kyegegwa","Kyenjojo","Kyotera","Lamwo","Lira","Lusot","Luuka","Luweero","Lwengo","Lyantonde","Madi-Okollo","Manafwa","Maracha","Masaka","Masindi","Mayuge","Mbale","Mbarara","Mitooma","Mityana","Moroto","Moyo","Mpigi","Mubende","Mukono","Nabilatuk","Nakapiripirit","Nakaseke","Nakasongola","Namayingo","Namisindwa","Namisindwa","Namutumba","Napak","Nebbi","Ngora","Ntoroko","Ntungamo","Nwoya","Obongi","Omoro","Otuke","Oyam","Pader","Pakwach","Pallisa","Rakai","Rubanda","Rubirizi","Rukiga","Rukungiri","Rwampara","Serere","Sheema","Sironko","Soroti","Ssembabule","Tororo","Wakiso","Yumbe","Zombo"];
 
 
-  map: GoogleMap;
-
   @ViewChild('fileInput') fileInput:ElementRef;
 
   @ViewChild('map_canvas') map_canvas:HTMLElement;
@@ -309,7 +297,6 @@ export class ProfileUpdatePage {
     public toastCtrl: ToastController,
     public sanitizer: DomSanitizer,
     public translateService: TranslateService,
-    private nativeGeocoder: NativeGeocoder
     ) 
   {
 
