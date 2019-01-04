@@ -14,8 +14,9 @@
   <ion-list padding style="margin: 0;">
     <div [formGroup]="validations_username">
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" autocomplete="off" [(ngModel)]="account.username" formControlName="username"></ion-input>
+        <!-- <ion-label floating>Username</ion-label> -->
+        <ion-input type="text" autocomplete="off" [(ngModel)]="account.username" formControlName="username" placeholder="{{ 'USERNAME' | translate }}"></ion-input>
+        <ion-icon name="md-person" item-left></ion-icon>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.username" >
@@ -28,8 +29,9 @@
     
     <div [formGroup]="matching_passwords_group">
       <ion-item>
-        <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password" formControlName="password"></ion-input>
+        <!-- <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label> -->
+        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password" formControlName="password" placeholder="{{ 'PASSWORD' | translate }}"></ion-input>
+        <ion-icon name="md-lock" item-left></ion-icon>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.password" >
@@ -40,8 +42,9 @@
       </div>
 
       <ion-item>
-        <ion-label floating>{{ 'PASSWORD_AGAIN' | translate }}</ion-label>
-        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password2" formControlName="confirm_password"></ion-input>
+        <!-- <ion-label floating>{{ 'PASSWORD_AGAIN' | translate }}</ion-label> -->
+        <ion-input type="password" autocomplete="off" [(ngModel)]="account.password2" formControlName="confirm_password" placeholder="{{ 'PASSWORD_AGAIN' | translate }}"></ion-input>
+        <ion-icon name="md-lock" item-left></ion-icon>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.confirm_password" >
@@ -54,8 +57,9 @@
     
     <div [formGroup]="validations_phone">
       <ion-item>
-        <ion-label floating>{{ 'PHONE' | translate }}*</ion-label>
-        <ion-input type="phone" [(ngModel)]="account.phone" formControlName="phone"></ion-input>
+        <!-- <ion-label floating>{{ 'PHONE' | translate }}*</ion-label> -->
+        <ion-input type="phone" [(ngModel)]="account.phone" formControlName="phone" placeholder="* {{ 'PHONE' | translate }}"></ion-input>
+        <ion-icon name="ios-call" item-left></ion-icon>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.phone" >

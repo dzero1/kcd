@@ -67,6 +67,10 @@ class UserController extends RestController
             $ret->error = true;
             $ret->message = 'User not found or user already exist.';
         }
+        if (empty($phone)){
+            $ret->error = true;
+            $ret->message = 'Phone number is required to register.';
+        }
 
         if (!$ret->error){
             $user = new KcdUsers();
@@ -127,6 +131,7 @@ class UserController extends RestController
             $details->firstname = $request->post('firstname');
             $details->lastname = $request->post('lastname');
             $details->phone = $request->post('phone');
+            $details->phone2 = $request->post('phone2');
             $details->dob = $request->post('dob');
             $details->country = $request->post('country');
             $details->city = $request->post('city');

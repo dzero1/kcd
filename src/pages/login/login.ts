@@ -18,6 +18,7 @@ import { User } from '../../providers/user/user';
 export class LoginPage {
 
   private loginErrorString: string;
+  error: string;
   account:{username:string, password:string} = {username:'', password:''};
 
   constructor(public navCtrl: NavController, 
@@ -37,6 +38,7 @@ export class LoginPage {
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,
         duration: 3000,
+        cssClass: "error",
         position: 'top'
       });
       toast.present();

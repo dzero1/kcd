@@ -81,6 +81,27 @@ border: none !important;
 
 ion-item{
 padding: 0 !important;
+    ion-icon{
+        &::before{
+            color: map-get($map: $colors, $key: primary);
+            
+            background: map-get($map: $colors, $key: primary );
+            background: -moz-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, map-get($map: $colors, $key: primary )), color-stop(100%, map-get($map: $colors, $key: secondary )));
+            background: -webkit-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+            background: -o-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+            background: -ms-linear-gradient(left, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+            background: linear-gradient(to right, map-get($map: $colors, $key: primary ) 0%, map-get($map: $colors, $key: secondary ) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1199fb', endColorstr='#4803a1', GradientType=1 );
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        & + .item-inner{
+            margin-left: 0 !important;
+        }
+    }
 }
 input, ion-select .select-text, ion-datetime .datetime-text, ion-picker-cmp .picker-opt{
 color: map-get($map: $colors, $key: light ) !important;
@@ -93,6 +114,17 @@ ion-toggle{
 }
 }
 
+ion-toast.error{
+    .toast-wrapper{
+        background: #db0000;
+    }
+}
+
+ion-toast.success{
+    .toast-wrapper{
+        background: #009e15;
+    }
+}
 
 #side-menu{
     #menu-list{

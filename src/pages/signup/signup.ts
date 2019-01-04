@@ -109,6 +109,7 @@ export class SignupPage {
           let toast = this.toastCtrl.create({
             message: resp.message,
             duration: 3000,
+            cssClass: "error",
             position: 'top'
           });
           toast.present();
@@ -118,6 +119,7 @@ export class SignupPage {
         let toast = this.toastCtrl.create({
           message: this.signupErrorString,
           duration: 3000,
+          cssClass: "error",
           position: 'top'
         });
         toast.present();
@@ -126,6 +128,7 @@ export class SignupPage {
       let toast = this.toastCtrl.create({
         message: this.requiredError,
         duration: 3000,
+        cssClass: "error",
         position: 'top'
       });
       toast.present();

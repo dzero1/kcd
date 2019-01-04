@@ -27,6 +27,7 @@ class m181222_181314_create_kcd_tables extends Migration
             'firstname' => $this->string(),
             'lastname' => $this->string(),
             'phone' => $this->string(),
+            'phone2' => $this->string(),
             'dob' => $this->string(),
             'country' => $this->string(),
             'district' => $this->string(),

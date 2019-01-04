@@ -374,6 +374,7 @@ export class ProfileUpdatePage {
         let toast = this.toastCtrl.create({
           message: this.errorString,
           duration: 3000,
+          cssClass: "error",
           position: 'top'
         });
         toast.present();
@@ -393,6 +394,7 @@ export class ProfileUpdatePage {
           let toast = this.toastCtrl.create({
             message: this.successSignupString,
             duration: 3000,
+            cssClass: "success",
             position: 'top'
           });
           toast.present();
@@ -402,6 +404,7 @@ export class ProfileUpdatePage {
           let toast = this.toastCtrl.create({
             message: this.successString,
             duration: 3000,
+            cssClass: "error",
             position: 'top'
           });
           toast.present();
@@ -413,6 +416,7 @@ export class ProfileUpdatePage {
         let toast = this.toastCtrl.create({
           message: this.errorString,
           duration: 3000,
+          cssClass: "error",
           position: 'top'
         });
         toast.present();        
@@ -422,6 +426,7 @@ export class ProfileUpdatePage {
       let toast = this.toastCtrl.create({
         message: this.errorString,
         duration: 3000,
+        cssClass: "error",
         position: 'top'
       });
       toast.present();
