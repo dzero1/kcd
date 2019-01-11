@@ -25,6 +25,7 @@ use Yii;
  */
 class KcdUserDetails extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */

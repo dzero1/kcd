@@ -30,13 +30,16 @@ page-profile-view {
             height: 80px;
             z-index: 0;
 
-            background: rgba(0,0,0,0);
-            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.5)));
-            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
-            background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
-            background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+            $col1:rgba(0, 0, 0, 0);
+            $col2:rgba(0, 0, 0, 0.5);
+
+            background: $col1;
+            background: -moz-linear-gradient(top, $col1 0%, $col2 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, $col1), color-stop(100%, $col2));
+            background: -webkit-linear-gradient(top, $col1 0%, $col2 100%);
+            background: -o-linear-gradient(top, $col1 0%, $col2 100%);
+            background: -ms-linear-gradient(top, $col1 0%, $col2 100%);
+            background: linear-gradient(to bottom, $col1 0%, $col2 100%);
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
         }
     }

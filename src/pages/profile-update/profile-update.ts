@@ -391,7 +391,7 @@ export class ProfileUpdatePage {
           let toast = this.toastCtrl.create({
             message: this.successString,
             duration: 3000,
-            cssClass: "error",
+            cssClass: "success",
             position: 'top'
           });
           toast.present();

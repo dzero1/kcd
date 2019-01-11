@@ -21,10 +21,16 @@
     <div padding>
       <div class="details" *ngIf="_user">
         <p class="phone">
-          <button ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
+          <button *ngIf="item.phone != ''" ion-button full icon-start color="secondary" (click)="makeCall(item.phone)">
             <ion-icon ios="ios-call"></ion-icon>
             {{item.phone}}
           </button>
+          
+          <button *ngIf="item.phone2 != ''" ion-button full icon-start color="secondary" (click)="makeCall(item.phone2)">
+            <ion-icon ios="ios-call"></ion-icon>
+            {{item.phone2}}
+          </button>
+
         </p>
         <table>
           <tr>

@@ -16,6 +16,9 @@ use Yii;
  */
 class KcdUsers extends \yii\db\ActiveRecord
 {
+    public $firstname;
+    public $lastname;
+
     /**
      * {@inheritdoc}
      */

@@ -17,6 +17,7 @@ class m181222_181314_create_kcd_tables extends Migration
             'username' => $this->string(),
             'password' => $this->string(),
             'access_token' => $this->string(),
+            'blocked' => $this->boolean()->defaultValue(false),
             'created' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'lastlogin' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
