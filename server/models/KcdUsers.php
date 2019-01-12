@@ -18,6 +18,8 @@ class KcdUsers extends \yii\db\ActiveRecord
 {
     public $firstname;
     public $lastname;
+    public $phone;
+    public $phone2;
 
     /**
      * {@inheritdoc}

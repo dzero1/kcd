@@ -10,6 +10,11 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+use webvimark\modules\UserManagement\models\User;
+use webvimark\modules\UserManagement\components\GhostMenu;
+use webvimark\modules\UserManagement\UserManagementModule;
+use webvimark\modules\UserManagement\components\GhostNav;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -35,7 +40,37 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+    echo GhostNav::widget([
+        'encodeLabels'=>false,
+        'activateParents'=>true,
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            [
+                'label' => 'Side-dish',
+                'items'=>[
+                    ['label' => 'Registerd Users', 'url' => ['/kcd-users/index']],
+                    //['label'=>'Login', 'url'=>['/user-management/auth/login']],
+                ],
+            ],
+            [
+                'label' => 'Management',
+                'items'=>UserManagementModule::menuItems()
+            ],
+            [
+                'label' => 'Me',
+                'items'=>[
+                    //['label'=>'Login', 'url'=>['/user-management/auth/login']],
+                    ['label'=>'Logout', 'url'=>['/user-management/auth/logout']],
+                    ['label'=>'Change my password', 'url'=>['/user-management/auth/change-own-password']],
+                    //['label'=>'Registration', 'url'=>['/user-management/auth/registration']],
+                    //['label'=>'Password recovery', 'url'=>['/user-management/auth/password-recovery']],
+                    //['label'=>'E-mail confirmation', 'url'=>['/user-management/auth/confirm-email']],
+                ],
+            ],
+        ],
+    ]);
+
+    /* echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
@@ -54,7 +89,7 @@ AppAsset::register($this);
                 . '</li>'
             )
         ],
-    ]);
+    ]); */
     NavBar::end();
     ?>
 

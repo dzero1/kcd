@@ -13,6 +13,7 @@ use app\models\KcdUsers;
 
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -35,6 +36,9 @@ class SiteController extends Controller
                 'actions' => [
                     'logout' => ['post'],
                 ],
+            ],
+            'ghost-access'=> [
+                'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
             ],
         ];
     }

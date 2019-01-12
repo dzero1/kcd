@@ -18,7 +18,8 @@ class KcdUsersSearch extends KcdUsers
     {
         return [
             [['id'], 'integer'],
-            [['username', 'password', 'access_token', 'created', 'lastlogin', 'firstname', 'lastname'], 'safe'],
+            [['username', 'password', 'access_token', 'created', 'lastlogin', 
+                'firstname', 'lastname',  'phone', 'phone2', 'blocked'], 'safe'],
         ];
     }
 
@@ -57,7 +58,7 @@ class KcdUsersSearch extends KcdUsers
         }
 
         // grid filtering conditions
-        $query->select('kcd_users.*, kcd_user_details.firstname, kcd_user_details.lastname');
+        $query->select('kcd_users.*, kcd_user_details.*');
         $query->innerJoin('kcd_user_details', 'kcd_user_details.user_id = kcd_users.id');
         $query->andFilterWhere([
             'id' => $this->id,

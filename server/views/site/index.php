@@ -2,6 +2,9 @@
 
 /* @var $this yii\web\View */
 
+use webvimark\modules\UserManagement\components\GhostMenu;
+use webvimark\modules\UserManagement\UserManagementModule;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
